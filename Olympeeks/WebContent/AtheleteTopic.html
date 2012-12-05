@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>AtheleteTopic</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="./libraries/RGraph.common.core.js" ></script>
+<script src="./libraries/RGraph.common.dynamic.js" ></script>
+<script src="./libraries/RGraph.common.tooltips.js" ></script>
+<script src="./libraries/RGraph.common.effects.js" ></script>
+<script src="./libraries/RGraph.line.js" ></script>
+<script src="./libraries/jquery.min.js" ></script> 
+<script src="./libraries/RGraph.common.key.js" ></script>
+
+ 
+ <script>
+ // indicate which country has been selected
+ 
+ var selectedCountry;
+ var selSportsCategory;
+ var selSportsEvent;
+ var graphs;
+ 
+ //select the country
+ $(window).load(function(){
+	 $.getJSON('TestSvt',{country: false},function(results){
+		 var country = $("#country");
+		// $('>option', country).remove();
+		 if(results){
+			 $.each(results, function(i,result){
+					country.append($('<option/>').val(result).text(result));
+			}); 
+		 }else{
+			 country.append($('<option/>').text("Please select the country"));
+		 }
+	 })
+ })
+ 
+ //select the start year, after selecting the country
+ $(function(){
+ 	//if the country tag change then called funcion??
+	 $("#country").change(function(){
+		selectedCountry = $(this).val();
+		$.getJSON('TestSvt',{country: selectedCountry, SportsCategory: false}, function(results){
+			var selSportsCategory = $("#SportsCategory");
+			 $('>option', selSportsCategory).remove();
+			 if(results){
+				 selSportsCategory.append($('<option/>').text("Please select the SportsCategory"));
+				 $.each(results, function(i,result){
+						selSportsCategory.append($('<option/>').val(result).text(result));
+				}); 
+			 }else{
+				 selSportsCategory.append($('<option/>').text("Please select the SportsCategory"));
+			 }
+			
+		});
+	 });
+ });
+ 
+ //select the end year after selecting the country and start year
+ $(function(){
+	 $("#SportsCategory").change(function(){
+		selSportsCategory = $(this).val();
+		//what is $(this) here
+		$.getJSON('AthleteSvt',
+				{country: selectedCountry, 
+				SportsCategory: selSportsCategory
+				//pass the chosen sportsCategory to the servelet 
+					}, function(results){
+			var selSportsEvent = $("#SportsEvent");
+			$('>option', selSportsEvent).remove();
+			if(results){
+				selSportsEvent.append($('<option/>').text("Please select the particular sports event"));
+				$.each(results, function(i,result){
+					endyear.append($('<option/>').val(result).text(result));
+				});
+			} else{
+				endyear.append($('<option/>').text("Please select the particular sports event"));
+			}	
+		});
+	 });
+ });
+ 
+ // $(function(){
+	//  $("#SportsCategory").change(function(){
+	// 	selSportsCategory = $(this).val();
+	// 	//what is $(this) here
+	// 	$.getJSON('AtheleteSvt',
+	// 			{country: selectedCountry, 
+	// 			SportsCategory: true, 
+	// 			value: selSportsCategory
+	// 			//pass the chosen sportsCategory to the servelet 
+	// 				}, function(results){
+	// 		var selSportsEvent = $("#SportsEvent");
+	// 		$('>option', selSportsEvent).remove();
+	// 		if(results){
+	// 			selSportsEvent.append($('<option/>').text("Please select the particular sports event"));
+	// 			$.each(results, function(i,result){
+	// 				selSportsEvent.append($('<option/>').val(result).text(result));
+	// 			});
+	// 		} else{
+	// 			endyear.append($('<option/>').text("Please select the particular sports event"));
+	// 		}	
+	// 	});
+	//  });
+ // });
+
+
+ $(function(){
+	 $("#SportsEvent").change(function(){
+		selSportsEvent = $(this).val();
+	 });
+ });
+
+ //draw the trend picture
+ 
+ 
+//refresh the page 
+ $(function(){
+	 $("#clearButton").click(function(){
+		window.location = 'AthleteTopic.jsp';
+	 });
+ });
+ 
+ // function drawGraph(results){
+	//  	//refresh the div, to refresh the canvas
+	// 	$('.GraphContainer').empty();
+	// 	$('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
+	  	
+	// 	//get the graph
+	// 	var graph = getGraph('cvs', results);
+	  	
+	// 	//draw the graph
+	// 	RGraph.Effects.Line.jQuery.Trace(graph);
+ // }
+ 
+ // function getGraph(id, results){
+	//  	var graphObject = results;
+	// 	if(!line){
+	// 			var line = new RGraph.Line(id, graphObject.golds, graphObject.totals);
+	// 			line.Set('chart.key', ['Gold','Total']);
+	// 		    line.Set('chart.key.interactive', true);
+	// 			line.Set('chart.curvy', true);
+	// 	    	line.Set('chart.curvy.tickmarks', true);
+	// 	    	line.Set('chart.curvy.tickmarks.fill', null);
+	// 	    	line.Set('chart.curvy.tickmarks.stroke', '#aaa');
+	// 	     	line.Set('chart.curvy.tickmarks.stroke.linewidth', 2);
+	// 	     	line.Set('chart.curvy.tickmarks.size', 5);
+	// 	     	line.Set('chart.linewidth', 3);
+	// 	     	line.Set('chart.hmargin', 5);
+	// 	     	line.Set('chart.labels', graphObject.years);
+	// 	  //   	line.Set('chart.tooltips', graphObject.years);
+	// 	     	line.Set('chart.tickmarks', 'circle');
+		     	
+		     	
+		     	
+	// 	}
+	// 	return line;
+ // }
+</script>
+<script type="text/javascript">
+
+  $(document).ready(function() {
+ $("#AthleteInput").autocomplete("AthleteAutoComplete");
+             });
+
+
+
+</script>
+
+</head>
+<body>
+
+
+<form>
+
+       <fieldset>
+          <legend>Athlete visualization</legend>
+          <p>
+             <label>Athlete Nationality</label> <br>
+             <select id = "country" name = "country">
+              	<option>Please select the country</option>
+             </select> <br>
+            <label>Sports Category</label> <br> 
+             <select id = "SportsCategory" name = "SportsCategory">
+           		<option> Please select the sports category </option>
+             </select>  <br>
+            <label>Sports Event</label> <br> 
+            <select id = "SportsEvent" name = "SportsEvent">	
+               <option> Please select the particular sports event </option>
+            </select>  <br>
+          </p>
+       </fieldset>
+</form>
+<h3>Enter text :</h3>
+<input type="text" id="AthleteInput" name="n"/>
+</body>
+</html>
