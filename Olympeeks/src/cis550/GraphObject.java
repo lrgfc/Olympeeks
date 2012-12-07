@@ -14,8 +14,8 @@ public class GraphObject {
 		this.totals = totals;
 	}
 	
-	public GraphObject(ArrayList<Integer> years){
+	/*public GraphObject(ArrayList<Integer> years){
 		this.years = years;
-	}
+	}*/
 
 }
