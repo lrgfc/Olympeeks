@@ -19,24 +19,29 @@ body{
    font-size: 14px;
    border: 1px solid #ccc;
    height: 20px;
-   position: relative;
+  /* position: relative;*/
    top:200px;
    left: 50px;
 }
 
+#selectpair{
+	padding:5px;
+	margin-bottom: 10px;
+}
+
 
 #slidercontainer{
-	position:absolute;
+	/*position:absolute;*/
 	bottom: 50px;
 	left: 100px;
 }
 .jThumbnailScroller{position:relative;
-					width:800px; 
+					width:1000px; 
 					height:122px; 
 					margin:160px auto 0 auto; 
-					border:5px 
+					/*border:5px*/ 
 					solid #eee; 
-					background:#bbb; 
+					background:#303030; 
 					padding:0; 
 					overflow:hidden; 
 					-moz-border-radius:5px; 

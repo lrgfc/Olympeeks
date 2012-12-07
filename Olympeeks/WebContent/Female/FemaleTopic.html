@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="./libraries/RGraph.common.core.js" ></script>
+<script src="./libraries/RGraph.common.dynamic.js" ></script>
+<script src="./libraries/RGraph.common.tooltips.js" ></script>
+<script src="./libraries/RGraph.common.effects.js" ></script>
+<script src="./libraries/RGraph.line.js" ></script>
+<script src="./libraries/jquery.min.js" ></script> 
+<script src="./libraries/RGraph.common.key.js" ></script>
+
+
+<script>
+$(window).load(function(){
+	$.getJSON('FemaleSvt',{country: false},function(results){
+		 	 {
+			  var country = $("#country");
+				// $('>option', country).remove();
+				 if(results){
+					 $.each(results, function(i,result){
+							country.append($('<option/>').val(result).text(result));
+					}); 
+				 }else{
+					 country.append($('<option/>').text("Please select the country"));
+				 }
+				// $('>option', country).remove();
+			  
+		  }
+		});
+})
+
+</script>
+</head>
+
+<body>
+
+<form>
+
+       <fieldset>
+          <legend>Female visiualization</legend>
+          <p>
+             <label>Country</label> <br>
+             <select id = "country" name = "country">
+              	<option>Please select the country</option>
+             </select> <br>
+          </p>
+       </fieldset>
+</form>
+
+</body>
+</html>
