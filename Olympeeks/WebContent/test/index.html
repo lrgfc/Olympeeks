@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Vivid Photo</title>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen"/>
+<link href="jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+<script src="scripts/jquery.easing.1.3.js" type="text/javascript"></script>
+<script src="scripts/jquery.mousewheel.min.js" type="text/javascript"></script>
+<!-- <script type="text/javascript" src="scripts/pop-ups.js"></script>
+<script type="text/javascript" src="scripts/nav.js"></script>-->
+<script>
+$(function(){
+  $(".test").click(function(){
+      alert("Hello!");
+  })
+})
+</script>
+</head>
+<body>
+<hgroup>
+  <h1>Olympeeks</h1>
+</hgroup>
+<!-- <nav>
+  <ul id="menu" class="menu">
+    <li> <a href="#" id="about"> <img src="images/1_menu.jpg" alt=""/> <span class="active"></span> <span class="wrap"> <span class="link">About me</span> <span class="descr">Know me</span> </span> </a> </li>
+    <li> <a href="#" id="projects"> <img src="images/2_menu.jpg" alt=""/> <span class="active"></span> <span class="wrap"> <span class="link">Projects</span> <span class="descr">My work</span> </span> </a> </li>
+    <li> <a href="#" id="contact"> <img src="images/3_menu.jpg" alt=""/> <span class="active"></span> <span class="wrap"> <span class="link">Contact</span> <span class="descr">Get in touch</span> </span> </a> </li>
+    <li > <a href="#" id="blog"> <img src="images/1_menu.jpg" alt=""/> <span class="active"></span> <span class="wrap"> <span class="link">Blog</span> <span class="descr">Daily musings</span> </span> </a> </li>
+  </ul>
+</nav> -->
+<section id="bg">
+  <section id="overlay"></section>
+  <!--<a href="#" class="nextImageBtn" title="next"></a>
+  <a href="#" class="prevImageBtn" title="previous"></a> -->
+  <img src="images/nestStadium_dark.png" alt="Beijing Nest Stadium" title="Beijing Nest Stadium" id="bgimg" />
+</section>
+<div id="preloader"><img src="images/ajax-loader_dark.gif" width="32" height="32" alt="" /></div>
+<div id="img_title"></div>
+<div id="toolbar"><a href="#" title="Maximize" onClick="ImageViewMode('full');return false"><img src="images/toolbar_fs_icon.png" width="50" height="50" alt="" /></a></div>
+<div id="thumbnails_wrapper">
+  <div id="outer_container">
+    <div class="thumbScroller">
+      <div class="container">
+        <div class="content">
+          <div class="test"><<img src="images/gallery/1_thumb.jpg" title="Title of this pic" alt="Title of this pic" class="thumb" /></div>
+        </div>
+        <div class="content">
+          <div class="test"><img src="images/gallery/2_thumb.jpg" title="Second Title" alt="Second Title" class="thumb" /></div>
+        </div>
+        <div class="content">
+          <div><img src="images/gallery/3_thumb.jpg" title="Third Title" alt="Third Title" class="thumb" /></div>
+        </div>
+        <div class="content">
+          <div><img src="images/gallery/4_thumb.jpg" title="Fourth Title" alt="Fourth Title" class="thumb" /></div>
+        </div>
+        <div class="content">
+          <div><img src="images/gallery/5_thumb.jpg" title="Fifth Title" alt="Fifth Title" class="thumb" /></div>
+        </div>
+        <div class="content">
+          <div><img src="images/gallery/6_thumb.jpg" title="Sixth Title" alt="Sixth Title" class="thumb" /></div>
+        </div>
+        <div class="content">
+          <div><img src="images/gallery/1_thumb.jpg" title="Title of this pic" alt="Title of this pic" class="thumb" /></div>
+        </div>
+        <div class="content">
+          <div><img src="images/gallery/2_thumb.jpg" title="Second Title" alt="Second Title" class="thumb" /></div>
+        </div>
+        <div class="content">
+          <div><img src="images/gallery/3_thumb.jpg" title="Third Title" alt="Third Title" class="thumb" /></div>
+        </div>
+        <div class="content">
+          <div><img src="images/gallery/4_thumb.jpg" title="Fourth Title" alt="Fourth Title" class="thumb" /></div>
+        </div>
+        <div class="content">
+          <div><img src="images/gallery/5_thumb.jpg" title="Fifth Title" alt="Fifth Title" class="thumb" /></div>
+        </div>
+        <div class="content">
+          <div><img src="images/gallery/6_thumb.jpg" title="Sixth Title" alt="Sixth Title" class="thumb" /></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="styled-select">
+   <select>
+      <option>Here is the first option</option>
+      <option>The second option</option>
+   </select>
+</div>
+<!-- <script type="text/javascript" src="scripts/gallery.js"></script> -->
+<script type="text/javascript" src="scripts/jquery.mCustomScrollbar.js"></script>
+</body>
+</html>

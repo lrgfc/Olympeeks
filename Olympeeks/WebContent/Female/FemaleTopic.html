@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Female Topic</title>
+<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+<style type="text/css">
+<!--
+/* page styling */
+/* some custom fonts via google font api */
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+body{margin:0; padding:0; background:#303030;}s
+header h1{font-family:"Lobster", Arial, Helvetica,sans-se; color:#333;}
+header h1 .big{font-size: 34px; color:#d56916;}
+-->
+</style>
+<!-- thumbnail scroller stylesheet -->
+<link href="styles.css" rel="stylesheet" />
+<!-- jquery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<!-- jquery ui custom build (for animation easing) -->
+<script src="../jquery-ui-1.8.13.custom.min.js"></script>
+</head>
+
+<body>
+<div class="styled-select">
+     <div class="selectpair">
+     	<select id = "country" name = "country">
+          <option>Please select the country</option>
+     	</select> <br>
+ 	</div>
+ 	<div class="selectpair">
+     	<select id = "startyear" name = "startyear">
+      		<option> Please select the Startyear </option>
+     	</select>  <br>
+ 	</div>
+ 	<div class="selectpair">
+     	<select id = "endyear" name = "endyear">	
+         	<option> Please select the Endyear </option>
+     	</select>  <br>
+ 	</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<button class="btn btn-primary" type="button" id = 'trendButton'>TRENDS!</button>
+
+<div class = "GraphContainer">
+	<canvas id="cvs" width="800" height="400">[No canvas support]</canvas>
+</div>
+       
+<script>
+/* jQuery.noConflict() for using the plugin along with other libraries. 
+   You can remove it if you won't use other libraries (e.g. prototype, scriptaculous etc.) or 
+   if you include jQuery before other libraries in yourdocument's head tag. 
+   [more info: http://docs.jquery.com/Using_jQuery_with_Other_Libraries] */
+jQuery.noConflict(); 
+/* calling thumbnailScroller function with options as parameters */
+(function($){
+
+var selectedCountry;
+var selStartYear;
+var selEndYear;
+var graphs;
+
+window.onload=function(){ 
+	$("#tS2").thumbnailScroller({ 
+		scrollerType:"hoverPrecise", 
+		scrollerOrientation:"horizontal", 
+		scrollSpeed:2, 
+		scrollEasing:"easeOutCirc", 
+		scrollEasingAmount:600, 
+		acceleration:4, 
+		scrollSpeed:800, 
+		noScrollCenterSpace:10, 
+		autoScrolling:0, 
+		autoScrollingSpeed:2000, 
+		autoScrollingEasing:"easeInOutQuad", 
+		autoScrollingDelay:500 
+	});
+
+	$.getJSON('../FemaleSvt',{country: false},function(results){
+		 	 {
+			  var country = $("#country");
+				 //$('>option', country).remove();
+				 if(results){
+					 $.each(results, function(i,result){
+							country.append($('<option/>').val(result).text(result));
+					}); 
+				 }else{
+					 country.append($('<option/>').text("Please select the country"));
+				 }
+		  }
+		});
+}
+$(".recommend").click(function(){
+    		alert("Hellor Word");
+  	});
+$("#country").change(function(){
+		selectedCountry = $(this).val();
+		$.getJSON('../FemaleSvt',{country: selectedCountry, startyear: false}, function(results){
+			var startyear = $("#startyear");
+			 $('>option', startyear).remove();
+			 if(results){
+				 startyear.append($('<option/>').text("Please select the Startyear"));
+				 $.each(results, function(i,result){
+						startyear.append($('<option/>').val(result).text(result));
+				}); 
+			 }else{
+				 startyear.append($('<option/>').text("Please select the Startyear"));
+			 }
+			
+		});
+	 });
+$("#startyear").change(function(){
+		selStartYear = $(this).val();
+		$.getJSON('../FemaleSvt',
+				{country: selectedCountry, 
+				startyear: true, 
+				value: selStartYear 
+					}, function(results){
+				var endyear = $("#endyear");
+				$('>option', endyear).remove();
+				if(results){
+					endyear.append($('<option/>').text("Please select the Endyear"));
+					$.each(results, function(i,result){
+						endyear.append($('<option/>').val(result).text(result));
+					});
+				} else{
+					endyear.append($('<option/>').text("Please select the Endyear"));
+				}	
+			});
+	 	});
+$("#endyear").change(function(){
+		selEndYear = $(this).val();
+	 });
+
+$("#trendButton").click(function(){
+	
+	$('.GraphContainer').empty();
+	$('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
+	//alert("Call the click trend function!");
+	$.getJSON('../FemaleGraphSvt',
+			{country:selectedCountry,
+			startyear: selStartYear,
+			endyear: selEndYear},function(results){
+				alert(results.years);
+				var graphObject = results;
+				var bar7 = new RGraph.Bar('cvs',graphObject.pairs);
+				bar7.Set('chart.key',['Female Number','Male Number']);
+    			bar7.Set('colors', ['#494949','#35A0DA']);
+    			bar7.Set('labels', ["1996","1998"]);
+    			bar7.Set('ylabels.count', 3);
+    			bar7.Set('numyticks', 5);
+    			bar7.Set('background.grid.vlines', false);
+    			bar7.Set('background.grid.border', false);
+    			bar7.Set('hmargin', 5);
+            
+            // New, more compact, "DOM1-esque", style of adding events
+    		bar7.ondraw = function (obj)
+       		{
+          		var len = obj.coords.length;
+
+          		for (var i=0; i<len; ++i) {
+
+              	var x = obj.coords[i][0];
+              	var y = obj.coords[i][1];
+              	var w = obj.coords[i][2] / 2;
+              	var h = obj.coords[i][3];
+
+              	obj.context.fillStyle = 'rgba(255,255,255,0.15)';
+              	obj.context.fillRect(x,y,w,h)
+             }
+         	}
+            
+      		bar7.Draw();
+
+		})
+	/*
+	var bar7 = new RGraph.Bar('cvs', [[47,75],[32,74],[71,85],[25,19],[23,71],[81,59],[43,130],[23,20]]);
+	bar7.Set('chart.key',['Women Number','Total Number']);
+    bar7.Set('colors', ['#494949','#35A0DA']);
+    bar7.Set('labels', ['Alf','Bert','Craig','Dan','Edgar','Fred','Gary','Harry']);
+    bar7.Set('ylabels.count', 3);
+    bar7.Set('numyticks', 5);
+    bar7.Set('background.grid.vlines', false);
+    bar7.Set('background.grid.border', false);
+    bar7.Set('hmargin', 5);
+            
+            // New, more compact, "DOM1-esque", style of adding events
+    bar7.ondraw = function (obj)
+       {
+          var len = obj.coords.length;
+
+          for (var i=0; i<len; ++i) {
+
+              var x = obj.coords[i][0];
+              var y = obj.coords[i][1];
+              var w = obj.coords[i][2] / 2;
+              var h = obj.coords[i][3];
+
+              obj.context.fillStyle = 'rgba(255,255,255,0.15)';
+              obj.context.fillRect(x,y,w,h)
+             }
+         }
+            
+      bar7.Draw();
+
+
+	/*$.getJSON('../GraphSvt',
+			{country:selectedCountry,
+			startyear: selStartYear,
+			endyear: selEndYear},function(results){
+				
+	//draw the graph
+	$('.GraphContainer').empty();
+	$('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
+	//get the graph
+		var graph = getGraph('cvs', results);
+		RGraph.Effects.Line.jQuery.Trace(graph);
+	});*/
+});
+
+})(jQuery);
+
+</script>
+<!-- thumbnailScroller script -->
+<script src="../jquery.thumbnailScroller.js"></script>
+<script src="../libraries/RGraph.common.core.js" ></script>
+<script src="../libraries/RGraph.common.effects.js" ></script>
+<script src="../libraries/RGraph.common.tooltips.js" ></script>
+<script src="../libraries/RGraph.common.dynamic.js" ></script>
+<script src="../libraries/RGraph.bar.js" ></script>
+<script src="../libraries/jquery.min.js" ></script> 
+<script src="../libraries/RGraph.common.key.js" ></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+
+</body>
+</html>
