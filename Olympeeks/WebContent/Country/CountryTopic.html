@@ -105,9 +105,6 @@ header h1 .big{font-size: 34px; color:#d56916;}
       <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div><!-- /.carousel -->
 
-
-
-
 <div class="row-fluid">
 <div class="span12">
 <!--
@@ -168,7 +165,7 @@ header h1 .big{font-size: 34px; color:#d56916;}
 		<div class="jTscroller">
 			<a class="recommend"><img src="thumbs/img1.jpg" /></a>
 			<a class="recommend"><img src="thumbs/img2.jpg" /></a>
-			<a><img src="thumbs/img3.jpg" /></a>
+			<a class="recommend"><img src="thumbs/img3.jpg" /></a>
 			<a><img src="thumbs/img4.jpg" /></a>
 			<a><img src="thumbs/img5.jpg" /></a>
 			<a><img src="thumbs/img6.jpg" /></a>
@@ -234,10 +231,12 @@ window.onload=function(){
 			 country.append($('<option/>').text("Please select the country"));
 		 }
 	 })
+	 
 }
 $(".recommend").click(function(){
-    		alert("Hellor Word");
+    	alert("Hellor Word");
   	});
+
 $("#country").change(function(){
 		selectedCountry = $(this).val();
 		$.getJSON('../CountrySvt',{country: selectedCountry, startyear: false}, function(results){

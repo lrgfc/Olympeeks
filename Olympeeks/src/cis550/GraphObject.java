@@ -22,6 +22,11 @@ public class GraphObject {
 		this.years = years;
 	}*/
 	
+	public GraphObject(ArrayList<Integer> medals, ArrayList<String> countries){
+		this.medals = medals;
+		this.countries = countries;
+	}
+	
 
 
 }
