@@ -8,6 +8,10 @@ public class GraphObject {
 	private ArrayList<Integer> golds;
 	private ArrayList<Integer> totals;
 	
+	
+	private ArrayList<String> countries;
+	private ArrayList<Integer> medals;
+	
 	public GraphObject(ArrayList<Integer> years, ArrayList<Integer> golds, ArrayList<Integer> totals){
 		this.years = years;
 		this.golds = golds;
@@ -17,5 +21,11 @@ public class GraphObject {
 	/*public GraphObject(ArrayList<Integer> years){
 		this.years = years;
 	}*/
+	
+	public GraphObject(ArrayList<Integer> medals, ArrayList<String> countries){
+		this.medals = medals;
+		this.countries = countries;
+	}
 
+	
 }
