@@ -71,7 +71,7 @@ header h1 .big{font-size: 34px; color:#d56916;}
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
         <div class="item active">
-          <img src="nestStadium_dark.png" alt="">
+          <img src="nestStadium_night.png" alt="">
           <div class="container">
             <div class="carousel-caption">
               <h1>Example headline.</h1>
@@ -91,7 +91,7 @@ header h1 .big{font-size: 34px; color:#d56916;}
           </div>
         </div>
         <div class="item">
-          <img src="nestStadium_night.png" alt="">
+          <img src="nestStadium_dark.png" alt="">
           <div class="container">
             <div class="carousel-caption">
               <h1>One more for good measure.</h1>
@@ -166,9 +166,9 @@ header h1 .big{font-size: 34px; color:#d56916;}
 			<a class="recommend"><img src="thumbs/img1.jpg" /></a>
 			<a class="recommend"><img src="thumbs/img2.jpg" /></a>
 			<a class="recommend"><img src="thumbs/img3.jpg" /></a>
-			<a><img src="thumbs/img4.jpg" /></a>
-			<a><img src="thumbs/img5.jpg" /></a>
-			<a><img src="thumbs/img6.jpg" /></a>
+			<a><img src="thumbs/Brazil.jpg" /></a>
+			<a><img src="thumbs/China.jpg" /></a>
+			<a><img src="thumbs/United States.jpg" /></a>
 			<a><img src="thumbs/img7.jpg" /></a>
 			<a><img src="thumbs/img8.jpg" /></a>
 			<a><img src="thumbs/img9.jpg" /></a>
@@ -231,6 +231,21 @@ window.onload=function(){
 			 country.append($('<option/>').text("Please select the country"));
 		 }
 	 })
+
+	 $.getJSON('../RmdSystem',function(results){
+	 		if(results == 'fail'){
+	 			alert("Result is fail");
+	 		}else{
+	 			alert(results);
+	 		}
+	 		/*$.each(results,function(key,value){
+	 			if(value == "false"){
+	 				alert("false is in the result!");
+	 			}else{
+	 				alert(value);
+	 			}
+	 		})*/
+	 })
 	 
 }
 $(".recommend").click(function(){
@@ -277,10 +292,12 @@ $("#endyear").change(function(){
 	 });
 
 $("#trendButton").click(function(){
+	var temptime = $.now()
 	$.getJSON('../GraphSvt',
 			{country:selectedCountry,
 			startyear: selStartYear,
-			endyear: selEndYear},function(results){
+			endyear: selEndYear,
+			clicktime: temptime},function(results){
 				
 	//draw the graph
 	$('.GraphContainer').empty();

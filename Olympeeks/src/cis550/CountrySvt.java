@@ -1,5 +1,8 @@
 package cis550;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -74,6 +77,32 @@ public class CountrySvt extends HttpServlet {
 				System.out.println("The size of the countreis is " + countries.size());
 				String json = gson.toJson(countries);
 				response.getWriter().write(json);
+				
+				System.out.print("LOcal directory: " + new File(".").getCanonicalFile());
+				
+				//use these to create the recommendation table
+				/*try {
+					 
+		 
+					File file = new File("//Users//xuwang//Documents//workspace//CIS550Project//temp.txt");
+		 
+					// if file doesnt exists, then create it
+					if (!file.exists()) {
+						file.createNewFile();
+					}
+		 
+					FileWriter fw = new FileWriter(file.getAbsoluteFile());
+					BufferedWriter bw = new BufferedWriter(fw);
+					for(String temp:countries){
+						bw.write(temp + "   INT,\n");
+					}
+					bw.close();
+		 
+					System.out.println("Done");
+		 
+				} catch (IOException e) {
+					e.printStackTrace();
+				}*/
 			}
 		}else{
 			System.out.println(country);
@@ -110,6 +139,7 @@ public class CountrySvt extends HttpServlet {
 				
 				String json = gson.toJson(years);
 				response.getWriter().write(json);
+
 			}else{
 				System.out.println("Cannot open the database");
 			}

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -71,6 +72,11 @@ public class GraphSvt extends HttpServlet {
 					totals.add(total);
 				}
 				
+				//close the result;
+				rs.close();
+				//close the stmt;
+				stmt.close();
+				
 				//send the response to the client
 				GraphObject graphObject = new GraphObject(years,golds,totals);
 				Gson gson = new Gson();
@@ -79,6 +85,27 @@ public class GraphSvt extends HttpServlet {
 				response.setContentType("text/plain");
 				response.setCharacterEncoding("UTF-8");
 				response.getWriter().write(json);
+				
+				//get the session of the user, if the user logs in, we'll keep track of his manipulation
+				try{
+					HttpSession session = request.getSession(false);
+					String username = (String) session.getAttribute("username");
+					String clicktime = (String) request.getParameter("clicktime");
+					System.out.println("The clicktime is "+clicktime);
+					System.out.println("The user name is "+username);
+					
+					//update the user information
+					String updating = String.format("insert into userrmd values(\'%s\', \'%s\', \'%s\')", username,country, clicktime);
+					Statement stmt_updating = connection.createStatement();
+					try{
+						stmt_updating.executeUpdate(updating);
+					}catch(Exception ex){
+						ex.printStackTrace();
+					}
+					
+				}catch(Exception ex){
+					System.out.println("Opps, this user has not logged in!");
+				}
 				
 			}catch(Exception ex){
 				ex.printStackTrace();

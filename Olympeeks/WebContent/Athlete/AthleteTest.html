@@ -46,20 +46,19 @@ header h1 .big{font-size: 34px; color:#d56916;}
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Topics <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="../Country/CountryTopic.html">Country</a></li>
+                  <li><a href="#">Country</a></li>
                   <li><a href="#">Athelete</a></li>
-                  <li><a href="..Sport/SportTopic.html">Sport</a></li>
-                  <li><a href="..Female/FemaleTopic.html">Female</a></li>
+                  <li><a href="#">Sport</a></li>
+                  <li><a href="#">Female</a></li>
                 </ul>
               </li>
               <li><a href="#Request">Add Request</a></li>
               <li><a href="#About">About</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id='UserAccount' name='UserAccount'><i class="icon-user icon-white"></i>User<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>User<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="#signIn-box" id='SignInButton' name='SignInButton'><i class="icon-arrow-right"></i>Login</a></li>
-                  <li><a href="#" style='display:none' id = 'accountInfo' name='accountInfo'><i class="icon-arrow-left"></i>Account</a></li>
-                  <li><a href="#signIn-box" style='display:none' id = 'logOutLink' name='logOutLink'><i class="icon-arrow-left"></i>Logout</a></li>
+                  <li><a href="#"><i class="icon-arrow-left"></i>Logout</a></li>
                 </ul>
               </li>
               <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
@@ -231,7 +230,6 @@ header h1 .big{font-size: 34px; color:#d56916;}
 			<p id='duplicate' name='duplicate' style='display:none'>The username you entered has been chosen</p>
 			<p id='notmatched' name='notmatched' style='display:none'>The passwords you enter don't match</p>
 			<p id="messageSuccessSignUp" name ='messageSuccessSignUp' style='display:none'>Welcome Onboard</p>
-			
 		</form>
 	</div>
 
@@ -256,7 +254,6 @@ header h1 .big{font-size: 34px; color:#d56916;}
 			</fieldset>
 			<p id="messageSuccess" name ='messageSuccess' style='display:none'>Welcome back</p>
 			<p id="messageFail" name = 'messageFail' style='display:none'>Wrong Password</p>
-			<p id='signOutMessage' name='signOutMessage' style='display:none'></p>
 		</form>
 	</div>
 
@@ -307,12 +304,6 @@ jQuery.noConflict();
 		 }
 	 })
  }
-
- $(function(){
- 	$(".recommend").click(function(){
- 		alert("Click the recommend system!")
- 	})
- })
  
  //select the start year, after selecting the country
  $(function(){
@@ -469,11 +460,9 @@ function validateUser() {
 		if (text == ""){
 			document.getElementById("errorUsername").innerHTML="Provide Username";
 			document.getElementById("errorUsername").style.color = "red";
-			$("#errorUsername").show();
 		}else{
 			document.getElementById("errorUsername").innerHTML="OK";
 			document.getElementById("errorUsername").style.color = "green";
-			$("#errorUsername").show();
 		}
 	 }
 	 
@@ -482,11 +471,9 @@ function validateUser() {
 		if (text == ""){
 			document.getElementById("errorPassword").innerHTML="Provide Password";
 			document.getElementById("errorPassword").style.color = "red";
-			$("#errorPassword").show();
 		}else{
 			document.getElementById("errorPassword").innerHTML="OK";
 			document.getElementById("errorPassword").style.color = "green";
-			$("#errorPassword").show();
 		}
 	 } 
 (function($){
@@ -499,16 +486,13 @@ function validateUser() {
 					$("#messageSuccess").html("Welcome back "+username);
 					$("#messageSuccess").show();
 					$("#messageFail").hide();
-					var a = $("#UserAccount");
-					document.getElementById("UserAccount").innerHTML='Welcome '+username;
-					$("#logOutLink").show();
-					$("#accountInfo").show();
-					$("#SignInButton").hide();
+					
 				}else{
 					$("#SignInTable").hide();
 					$("#messageFail").show();
 					$("#messageSuccess").hide();
 				}
+				//draw the graph
 					
 				});
 		});
@@ -536,15 +520,9 @@ function validateUser() {
 		
       //Getting the variable's value from a link 
 		var SignUpBox = $(this).attr('href');
-		$("#usernameSignUp").val("").empty();
-		$("#passwordSignUpFirst").val("").empty();
-		$("#passwordSignUpSecond").val("").empty();
-      	$("#SignUpTable").show();
-		
+		$("#SignUpTable").show();
 		$("#duplicate").hide();
 		$("#notmatched").hide();
-		$("#errorPassword").hide();
-		$("#errorUsername").hide();
 		$("#messageSuccessSignUp").hide();
 		//Fade in the Popup
 		$(SignUpBox).fadeIn(300);
@@ -571,14 +549,9 @@ function validateUser() {
 		
       //Getting the variable's value from a link 
 		var SignInBox = $(this).attr('href');
-		$("#Username").val("").empty();
-		$("#Password").val("").empty();
-        $("#SignInTable").show();
-		
+		$("#SignInTable").show();
 		$("#messageSuccess").hide();
 		$("#messageFail").hide();
-		$("#errorPassword").hide();
-		$("#errorUsername").hide();
 		//Fade in the Popup
 		$(SignInBox).fadeIn(300);
 		
@@ -628,10 +601,6 @@ function validateUser() {
 					});
 					$("#messageSuccessSignUp").html("Welcome Onboard "+usernameSignUp);
 					$("#messageSuccessSignUp").show();
-					document.getElementById("UserAccount").innerHTML='Welcome '+usernameSignUp;
-					$("#logOutLink").show();
-					$("#accountInfo").show();
-					$("#SignInButton").hide();
 				}
 				//draw the graph
 					
@@ -639,40 +608,7 @@ function validateUser() {
 		 });
 	 	});
 
-				$("#logOutLink").click(function(){
-					var SignInBox = $(this).attr('href');
-					$(SignInBox).fadeIn(300);
-					
-					//Set the center alignment padding + border see css style
-					var popMargTop = ($(SignInBox).height() + 24) / 2; 
-					var popMargLeft = ($(SignInBox).width() + 24) / 2; 
-					
-					$(SignInBox).css({ 
-						'margin-top' : -popMargTop,
-						'margin-left' : -popMargLeft
-					});
-					
-					// Add the mask to body
-					$('body').append('<div id="mask"></div>');
-					$('#mask').fadeIn(300);
-					$("#messageSuccess").hide();
-					$("#messageFail").hide();
-					$("#errorPassword").hide();
-					$("#errorUsername").hide();
-					
-					$.getJSON('../LogOut', {},function(results){
-					
-					$("#SignInTable").hide();
-					document.getElementById("signOutMessage").innerHTML=results;
-					$("#signOutMessage").show();
-					if(results=="Log out succeed"){
-						$("#SignInButton").show();	
-						$("#logOutLink").hide();
-						$("#accountInfo").hide();
-						document.getElementById("UserAccount").innerHTML='User';
-					}
-					});
-			 });
+	 
 
 	
 		$(function() {

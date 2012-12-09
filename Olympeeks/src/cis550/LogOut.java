@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 /**
  * Servlet implementation class LogOut
  */
@@ -42,9 +44,22 @@ public class LogOut extends HttpServlet {
 	        // session will be null.
 	        //
 	        session = request.getSession(false);
-	 
-	        response.getWriter().println("Session : " + session);
-	 
+	        if(session == null){
+	        	Gson gson = new Gson();
+				String json = gson.toJson("Log out succeed");
+				
+				response.setContentType("text/plain");
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().write(json);
+	       
+	        }else{
+	        	Gson gson = new Gson();
+				String json = gson.toJson("Log out fail");
+				
+				response.setContentType("text/plain");
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().write(json);
+	        }
 	}
 
 	/**
