@@ -23,12 +23,113 @@ header h1 .big{font-size: 34px; color:#d56916;}
 </head>
 
 <body>
+
+<!-- Wrap the .navbar in .container to center it on the page and provide easy way to target it with .navbar-wrapper. -->
+    <div class="container navbar-wrapper">
+
+      <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+          <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Olympeeks</a>
+          <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="#">Home</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Topics <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Country</a></li>
+                  <li><a href="#">Athelete</a></li>
+                  <li><a href="#">Sport</a></li>
+                  <li><a href="#">Female</a></li>
+                </ul>
+              </li>
+              <li><a href="#Request">Add Request</a></li>
+              <li><a href="#About">About</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>User<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><i class="icon-arrow-right"></i>Login</a></li>
+                  <li><a href="#"><i class="icon-arrow-left"></i>Logout</a></li>
+                </ul>
+              </li>
+              <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!-- /.navbar-inner -->
+      </div><!-- /.navbar -->
+
+    </div><!-- /.container -->
+
+
+<!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="nestStadium_night.png" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Example headline.</h1>
+              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <a class="btn btn-large btn-primary" href="#">Sign up today</a>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="nestStadium_flash.png" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Another example headline.</h1>
+              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <a class="btn btn-large btn-primary" href="#">Learn more</a>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="nestStadium_dark.png" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>One more for good measure.</h1>
+              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div><!-- /.carousel -->
+
+<div class="row-fluid">
+<div class="span12">
+<!--
+<header>
+<h1><span class="big"></span></h1>
+</header>
+-->
+</div>
+</div>
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span3">
+<br>
+<br>
+<br>
+<br>
+
 <div class="styled-select">
      <div class="selectpair">
      	<select id = "country" name = "country">
           <option>Please select the country</option>
      	</select> <br>
- 	</div>
+ 	  </div>
  	<div class="selectpair">
      	<select id = "startyear" name = "startyear">
       		<option> Please select the Startyear </option>
@@ -45,11 +146,51 @@ header h1 .big{font-size: 34px; color:#d56916;}
 <br>
 <br>
 <button class="btn btn-primary" type="button" id = 'trendButton'>TRENDS!</button>
+</div>
 
+<div class="span9">
 <div class = "GraphContainer">
 	<canvas id="cvs" width="800" height="400">[No canvas support]</canvas>
 </div>
-       
+
+</div>
+</div>
+</div>
+
+
+<!-- thumbnail scroller markup begin -->
+<div id="slidercontainer">
+<div id="tS2" class="jThumbnailScroller" style="margin-top:50px;">
+	<div class="jTscrollerContainer">
+		<div class="jTscroller">
+			<a><img class="rank" id="rank1" src="thumbs/img1.jpg" alt="NA"/></a>
+			<a><img class="rank" id="rank2" src="thumbs/img2.jpg" alt="NA"/></a>
+			<a><img class="rank" id="rank3" src="thumbs/img3.jpg" alt="NA" /></a>
+			<a><img class="rank" id="rank4" src="thumbs/img4.jpg" alt="NA"/></a>
+			<a><img class="rank" id="rank5" src="thumbs/img5.jpg" alt="NA"/></a>
+			<a><img class="rank" src="thumbs/img6.jpg" alt="NA" /></a>
+			<a><img class="rank" src="thumbs/img7.jpg" alt="NA"/></a>
+			<a><img class="rank" src="thumbs/img8.jpg" alt="NA"/></a>
+			<a><img class="rank" src="thumbs/img9.jpg" alt="NA"/></a>
+			<a><img class="rank" src="thumbs/img10.jpg" alt="NA"/></a>
+		<!--	<a><img src="thumbs/img11.jpg" /></a>
+			<a><img src="thumbs/img12.jpg" /></a>
+			<a><img src="thumbs/img13.jpg" /></a>
+			<a><img src="thumbs/img14.jpg" /></a>
+			<a><img src="thumbs/img15.jpg" /></a>
+			<a><img src="thumbs/img16.jpg" /></a>
+			<a><img src="thumbs/img17.jpg" /></a>
+			<a><img src="thumbs/img18.jpg" /></a>
+			<a><img src="thumbs/img19.jpg" /></a>
+			<a><img src="thumbs/img20.jpg" /></a>-->
+		</div>
+	</div>
+	<a href="#" class="jTscrollerPrevButton"></a>
+	<a href="#" class="jTscrollerNextButton"></a>
+</div>
+</div>
+<!-- thumbnail scroller markup end -->
+
 <script>
 /* jQuery.noConflict() for using the plugin along with other libraries. 
    You can remove it if you won't use other libraries (e.g. prototype, scriptaculous etc.) or 

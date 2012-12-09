@@ -23,6 +23,8 @@ import com.google.gson.Gson;
 public class RmdSystem extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String username = null;
+	private String prefix = "thumbs/";
+	private String suffix = ".jpg";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -47,11 +49,10 @@ public class RmdSystem extends HttpServlet {
 			username = (String) session.getAttribute("username");
 			if(username != null){
 				System.out.println("username is " + username);
-				String json = gson.toJson(username);
-				response.getWriter().write(json);
-				System.out.println("json in rmdSystem is " + json);
 				ArrayList<String> rmdCountries = new ArrayList<String>();
 				rmdCountries = this.recommend();
+				String json = gson.toJson(rmdCountries);
+				response.getWriter().write(json);
 			}
 			
 		}catch(Exception ex){
@@ -72,16 +73,21 @@ public class RmdSystem extends HttpServlet {
 	}
 	
 	private ArrayList<String> recommend(){
+		//define the prefix and suffix of the image
+		
+		System.out.println(prefix);
+		
+		
 		ArrayList<String> rmdCountries = new ArrayList<String>();
 		//connect to the DB
 		Connection connection = (Connection) this.getServletContext().getAttribute("dbConnection");
 		//select the top countries clicked by this user
-		String query = String.format("select countryname,count(*) from userrmd where username = \'%s\' group by countryname order by count(*) DESC LIMIT 10",username);
+		String query = String.format("select countryname,count(*) from userrmd where username = \'%s\' group by countryname order by count(*) DESC LIMIT 8",username);
 		try {
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while(rs.next()){
-				rmdCountries.add(rs.getString("countryname"));
+				rmdCountries.add(prefix+rs.getString("countryname")+suffix);
 			}
 			stmt.close();
 			rs.close();
@@ -90,12 +96,12 @@ public class RmdSystem extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		query = "select countryname from totaltrends order by totalclicks LIMIT 20";
+		query = "select countryname from totaltrends order by totalclicks DESC LIMIT 20";
 		try{
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while(rs.next()){
-				String tempCountry = rs.getString("countryname");
+				String tempCountry = prefix+rs.getString("countryname")+suffix;
 				if(!rmdCountries.contains(tempCountry)){
 					rmdCountries.add(tempCountry);
 				}
