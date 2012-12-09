@@ -74,8 +74,8 @@ header h1 .big{font-size: 34px; color:#d56916;}
           <img src="basketball.jpg" alt="">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Still Dream Team?</h1>
-              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <h1>Follow your favorite sport</h1>
+              <p class="lead">There are so many exciting sports in Olympic games. From here, you can learn more about their story and what are those powerhouses in each sport.</p>
               <a class="btn btn-large btn-primary" href="#">Sign up today</a>
             </div>
           </div>
@@ -85,8 +85,8 @@ header h1 .big{font-size: 34px; color:#d56916;}
           <div class="container">
             <div class="carousel-caption">
               <h1>"War" Rises Among China, Australia and USA</h1>
-              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <a class="btn btn-large btn-primary" href="#">Learn more</a>
+              <p class="lead">A smaller Olympic team for London 2012, perhaps. But China is bringing more swimmers to London than it took to its home Games. Success for them here could cement a new era in the sport.</p>
+              <a id="btn-carousel-learn-more" class="btn btn-large btn-primary" href="#">Learn more</a>
             </div>
           </div>
         </div>
@@ -94,9 +94,9 @@ header h1 .big{font-size: 34px; color:#d56916;}
           <img src="tennisdetable.jpg" alt="">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Unstoppable Chinese Table Tennis Team.</h1>
-              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
+              <h1>China control</h1>
+              <p class="lead">Who will stop China Table Tennis Team?</p>
+              <a id="btn-carousel-browse-pic" class="btn btn-large btn-primary" href="#">Learn more</a>
             </div>
           </div>
         </div>
@@ -236,9 +236,119 @@ window.onload=function(){
          }
      })
 }
+
 $(".recommend").click(function(){
             alert("Hellor Word");
     });
+    
+$("#btn-carousel-learn-more").click(function() {
+    $('.GraphContainer').empty();
+    $('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
+    
+    if(!pie1){
+        var pie1 = new RGraph.Pie("cvs", [135,86,32,29,101]);
+        pie1.Set('chart.radius', 170);
+        // pie1.Set('chart.tooltips', ['John (2%)', 'Richard (29%)', 'Fred (45%)', 'Brian (17%)', 'Peter (7%)']);
+        pie1.Set('chart.labels', ["United States","Australia","China","France","Others"]);
+        pie1.Set('chart.strokestyle', 'white');
+        pie1.Set('chart.linewidth', 5);
+        pie1.Set('chart.shadow', true);
+        pie1.Set('chart.shadow.blur', 10);
+        pie1.Set('chart.shadow.offsetx', 0);
+        pie1.Set('chart.shadow.offsety', 0);
+        pie1.Set('chart.shadow.color', '#000');
+        pie1.Set('chart.text.color', '#999');
+
+        var explode = 20;
+
+        function myExplode (obj)
+        {
+            window.__pie__ = pie1;
+
+            for (var i=0; i<obj.data.length; ++i) {
+                setTimeout('window.__pie__.Explode('+i+',10)', i * 50);
+            }
+        }
+
+        if (RGraph.isOld()) {
+            pie1.Draw();
+
+        } else if (navigator.userAgent.toLowerCase().indexOf('firefox') >= 0) {
+            RGraph.Effects.Pie.RoundRobin(pie1);
+
+        } else {
+            /**
+            * The RoundRobin callback initiates the exploding
+            */
+
+            RGraph.Effects.Pie.RoundRobin(pie1, null, myExplode);
+            RGraph.Effects.Pie.Implode(pie1);
+        }             
+             
+            
+            
+            
+    }
+    
+    RGraph.Effects.Line.jQuery.Trace(pie1);
+
+    
+});
+
+$("#btn-carousel-browse-pic").click(function(){
+	$('.GraphContainer').empty();
+    $('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
+    
+    if(!pie1){
+        var pie1 = new RGraph.Pie("cvs", [37,11,4,4,2,5]);
+        pie1.Set('chart.radius', 170);
+        // pie1.Set('chart.tooltips', ['John (2%)', 'Richard (29%)', 'Fred (45%)', 'Brian (17%)', 'Peter (7%)']);
+        pie1.Set('chart.labels', ["China","South Korea","Germany","Singapore","France","Others"]);
+        pie1.Set('chart.strokestyle', 'white');
+        pie1.Set('chart.linewidth', 5);
+        pie1.Set('chart.shadow', true);
+        pie1.Set('chart.shadow.blur', 10);
+        pie1.Set('chart.shadow.offsetx', 0);
+        pie1.Set('chart.shadow.offsety', 0);
+        pie1.Set('chart.shadow.color', '#000');
+        pie1.Set('chart.text.color', '#999');
+
+        var explode = 20;
+
+        function myExplode (obj)
+        {
+            window.__pie__ = pie1;
+
+            for (var i=0; i<obj.data.length; ++i) {
+                setTimeout('window.__pie__.Explode('+i+',10)', i * 50);
+            }
+        }
+
+        if (RGraph.isOld()) {
+            pie1.Draw();
+
+        } else if (navigator.userAgent.toLowerCase().indexOf('firefox') >= 0) {
+            RGraph.Effects.Pie.RoundRobin(pie1);
+
+        } else {
+            /**
+            * The RoundRobin callback initiates the exploding
+            */
+
+            RGraph.Effects.Pie.RoundRobin(pie1, null, myExplode);
+            RGraph.Effects.Pie.Implode(pie1);
+        }             
+             
+            
+            
+            
+    }
+    
+    RGraph.Effects.Line.jQuery.Trace(pie1);
+
+    
+});
+
 $("#sport").change(function(){
         selectedSport = $(this).val();
         $.getJSON('../SportSvt',{sport: selectedSport, startyear: false}, function(results){
@@ -293,8 +403,8 @@ $("#trendButton").click(function(){
 })(jQuery);
 
  function getGraph(id, results){
-        var graphObject = results;
-        if(!pie1){
+            var graphObject = results;
+ 	        if(!pie1){
             var pie1 = new RGraph.Pie(id, graphObject.medals);
             pie1.Set('chart.radius', 170);
             // pie1.Set('chart.tooltips', ['John (2%)', 'Richard (29%)', 'Fred (45%)', 'Brian (17%)', 'Peter (7%)']);
