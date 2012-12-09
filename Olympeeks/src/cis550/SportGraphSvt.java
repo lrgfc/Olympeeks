@@ -42,14 +42,15 @@ public class SportGraphSvt extends HttpServlet {
 		int startyear = Integer.parseInt(request.getParameter("startyear"));
 		int endyear = Integer.parseInt(request.getParameter("endyear"));
 		String sport = request.getParameter("sport");
-		
+		int counter = 0;
+		int medals_counter = 0;
 		//connect to database, select the wanted field
 		Connection connection = (Connection) this.getServletContext().getAttribute("dbConnection");
 		if(connection != null){
 			try{
 				//select the years, order by years
 				String query = "select country, count(rank) as total from athelets where sport = \'"+sport + 
-						"\' and game >= "+ startyear + " and game <= " + endyear + " and rank >= 1 and rank <= 3 group by country";
+						"\' and game >= "+ startyear + " and game <= " + endyear + " and rank >= 1 and rank <= 3 group by country order by total desc";
 				Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				
@@ -67,11 +68,17 @@ public class SportGraphSvt extends HttpServlet {
 				while(rs.next()){
 					String country = rs.getString("country");
 					int medal = rs.getInt("total");
-					
+					if ( counter < 7) {
 					countries.add(country);
 					medals.add(medal);
+					} else {
+					medals_counter += medal;	
+					}
+					counter ++;
 				}
 				
+				countries.add("Miscellaneous");
+				medals.add(medals_counter);
 				//send the response to the client
 				GraphObject graphObject = new GraphObject(medals, countries);
 				Gson gson = new Gson();
