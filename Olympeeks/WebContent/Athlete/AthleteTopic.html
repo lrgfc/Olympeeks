@@ -46,13 +46,19 @@ header h1 .big{font-size: 34px; color:#d56916;}
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Topics <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="../Country/CountryTopic.html">Country</a></li>
+                  <li><a href="#">Country</a></li>
                   <li><a href="#">Athelete</a></li>
-                  <li><a href="..Sport/SportTopic.html">Sport</a></li>
-                  <li><a href="..Female/FemaleTopic.html">Female</a></li>
+                  <li><a href="#">Sport</a></li>
+                  <li><a href="#">Female</a></li>
                 </ul>
               </li>
-              <li><a href="#Request">Add Request</a></li>
+              <li class="dropdown">
+              	<a href="#" class="dropdown-toggle" data-toggle="dropdown">More View!</a>
+              	<ul class="dropdown-menu" >
+              	<li><a href="javascript:activateTab('page1')" id='View1' name='View1'>Individual</a></li>
+				<li><a href="javascript:activateTab('page2')" id='View2' name='View2'>Super Stars</a></li>
+              	</ul>
+              	</li>
               <li><a href="#About">About</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id='UserAccount' name='UserAccount'><i class="icon-user icon-white"></i>User<b class="caret"></b></a>
@@ -123,7 +129,8 @@ header h1 .big{font-size: 34px; color:#d56916;}
 </div>
 </div>
 
-
+<div id="tabCtrl">
+<div id="page1" style="display: block;">
 
 <div class="container-fluid">
 <div class="row-fluid">
@@ -167,16 +174,71 @@ header h1 .big{font-size: 34px; color:#d56916;}
 <button class="btn btn-primary" type="button" id = 'trendButton'>TRENDS!</button>
 </p>
 </div>
-
 <div class="span9">
 
-<div class = "GraphContainer">
+<div class = "GraphContainer" id='Container'>
 	<canvas id="cvs" width="800" height="400">[No canvas support]</canvas>
 </div>
 
 </div>
+
 </div>
 </div>
+</div>
+
+
+<div id="page2" style="display: none;">
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span3">
+<br>
+<br>
+<br>
+<br>
+<!-- selector begin -->
+<div class="styled-select">
+ 	<div class="selectpair">
+     <select id = "SportsCategory2" name = "SportsCategory2">
+      		<option> Please select the sports category </option>
+     </select>  <br>
+ 	</div>
+ 	<div class="selectpair">
+     <select id = "startYear" name = "startYear">	
+               <option> Please select the start year </option>
+     </select>  <br>
+ 	</div>
+ 	<div class="selectpair">
+     <select id = "endYear" name = "endYear">	
+               <option> Please select the end year </option>
+     </select>  <br>
+ 	</div>
+</div>
+<p>
+<br>
+<br>
+<br>
+<button class="btn btn-primary" type="button" id = 'trendButtonView'>TRENDS!</button>
+</p>
+</div>
+<div class="span9">
+
+<div class = "GraphContainer" id='ContainerView'>
+	<canvas id="cvsView" width="800" height="400">[No canvas support]</canvas>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+
 <!-- thumbnail scroller markup begin -->
 <div id="slidercontainer">
 <div id="tS2" class="jThumbnailScroller" style="margin-top:100px;">
@@ -241,13 +303,13 @@ header h1 .big{font-size: 34px; color:#d56916;}
 				<label class="username"> <span>Please enter your username</span> 
 
 				<input
-					id="Username" name="Username" value="" type="text" onblur="validateUser();"
+					id="Username" name="Username" value="" type="text"
 					placeholder="Username">
 				</label> 
 				<label id="errorUsername"></label>
 				
 				<label class="password"> <span>Please enter your password</span> <input
-					id="Password" name="Password" value="" type="password" onblur="validatePassword();"
+					id="Password" name="Password" value="" type="password"
 					placeholder="Password">
 				</label>
 				<label id="errorPassword"></label>
@@ -277,6 +339,9 @@ jQuery.noConflict();
  var year;
  var athletes;
  var graphs;
+ var selSportsCategory2;
+ var selStartYear;
+ var selEndYear;
 
 //select the country
  window.onload=function(){
@@ -306,14 +371,33 @@ jQuery.noConflict();
 			 country.append($('<option/>').text("Please select the country"));
 		 }
 	 })
- }
-
- $(function(){
- 	$(".recommend").click(function(){
- 		alert("Click the recommend system!")
- 	})
- })
+ $.getJSON('../SignInOnLoad',function(results){
+		// $('>option', country).remove();
+		 if(results=='in'){
+				document.getElementById("UserAccount").innerHTML='Welcome '+username;
+				$("#logOutLink").show();
+				$("#accountInfo").show();
+				$("#SignInButton").hide();
+			}; 
+		 })
  
+ 
+ }
+ $(function(){
+	 $("#View1").click(function(){
+ $.getJSON('../AthleteSvt',{country: false},function(results){
+	 var country = $("#country");
+	// $('>option', country).remove();
+	 if(results){
+		 $.each(results, function(i,result){
+				country.append($('<option/>').val(result).text(result));
+		}); 
+	 }else{
+		 country.append($('<option/>').text("Please select the country"));
+	 }
+ });
+	 });
+ });
  //select the start year, after selecting the country
  $(function(){
  	//if the country tag change then called funcion??
@@ -418,23 +502,49 @@ jQuery.noConflict();
 					SportsEvents: selSportsEvent},function(results){
 				
 					//draw the graph
-					drawGraph(results);
+					drawGraph(results, selAthlete, selSportsEvent);
 				});
 		});
 	});
  })(jQuery);
  
- function drawGraph(results){
+ function drawGraph(results, athlete, event){
 	 	//refresh the div, to refresh the canvas
 		$('.GraphContainer').empty();
 		$('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
 	  	if(results){
+	  		if(results.ranks.length>1){	  		
 		//get the graph
 		var graph = getGraph('cvs', results);
 		//draw the graph
 		graph.Draw();
-		}else{
-			$('#toggleText').show();
+		}else if(results.ranks.length==1){
+
+			var canvas = document.getElementById("cvs");
+			var context = canvas.getContext("2d");
+			var maxWidth = 700;
+		    var lineHeight = 50;
+		    var x = 400;
+		    var y = 150;
+		    var text = 'In '+results.years[0] +' Olympic game, '+athlete + " ranked " + results.ranks[0] + ' in '+event;
+			context.fillStyle = "#696969";
+			context.font = "36px Calibri";
+			context.textAlign = 'center';
+			wrapText(context, text, x, y, maxWidth, lineHeight);
+			
+		}}else{
+			
+			var canvas = document.getElementById("cvs");
+			var context = canvas.getContext("2d");
+			var maxWidth = 700;
+		    var lineHeight = 50;
+		    var x = 400;
+		    var y = 150;
+		    var text = "Oops! The data you request is not available in our database! Sorry!";
+			context.fillStyle = "#696969";
+			context.font = "36px Calibri";
+			context.textAlign = 'center';
+			wrapText(context, text, x, y, maxWidth, lineHeight);
 		}
 	  	
 }
@@ -442,7 +552,7 @@ jQuery.noConflict();
 function getGraph(id, results){
 	 	var graphObject = results;
 		if(!line){
-				var line = new RGraph.Line(id, graphObject.golds);
+				var line = new RGraph.Line(id, graphObject.ranks);
 			    line.Set('chart.labels', graphObject.years);
 			    line.Set('chart.key', ['Ranks']);
 			    line.Set('chart.key.interactive', true);
@@ -453,9 +563,132 @@ function getGraph(id, results){
 		}
 		return line;
 }
- 
-</script>
 
+function wrapText(context, text, x, y, maxWidth, lineHeight) {
+    var words = text.split(' ');
+    var line = '';
+
+    for(var n = 0; n < words.length; n++) {
+      var testLine = line + words[n] + ' ';
+      var metrics = context.measureText(testLine);
+      var testWidth = metrics.width;
+      if(testWidth > maxWidth) {
+        context.fillText(line, x, y);
+        line = words[n] + ' ';
+        y += lineHeight;
+      }
+      else {
+        line = testLine;
+      }
+    }
+    context.fillText(line, x, y);
+  }
+
+(function($){
+	$(function(){
+		$("#View2").click(function(){
+			$.getJSON('../AthleteSvtView',{sportsCategory: false},function(results){
+				 var SportsCategory = $("#SportsCategory2");
+				// $('>option', country).remove();
+				 if(results){
+					 $.each(results, function(i,result){
+							SportsCategory.append($('<option/>').val(result).text(result));
+					}); 
+				 }else{
+					 SportsCategory.append($('<option/>').text("Please select the sports category"));
+				 }
+			 });
+				 });
+			 });
+	$(function(){
+ 	//if the country tag change then called funcion??
+	 $("#SportsCategory2").change(function(){
+		selSportsCategory2 = $(this).val();
+		$.getJSON('../AthleteSvtView',{sportsCategory: selSportsCategory2, startyear: false}, function(results){
+			var StartYear = $("#startYear");
+			 $('>option', StartYear).remove();
+			 if(results){
+				 StartYear.append($('<option/>').text("Please select the start year"));
+				 $.each(results, function(i,result){
+						StartYear.append($('<option/>').val(result).text(result));
+				}); 
+			 }else{
+				 StartYear.append($('<option/>').text("Please select the start year"));
+			 }
+			
+		});
+	 });
+ });
+	
+	$(function(){
+	 	//if the country tag change then called funcion??
+		 $("#startYear").change(function(){
+			selStartYear = $(this).val();
+			$.getJSON('../AthleteSvtView',{sportsCategory: selSportsCategory2, startyear: selStartYear}, function(results){
+				var EndYear = $("#endYear");
+				 $('>option', EndYear).remove();
+				 if(results){
+					 EndYear.append($('<option/>').text("Please select the end year"));
+					 $.each(results, function(i,result){
+							EndYear.append($('<option/>').val(result).text(result));
+					}); 
+				 }else{
+					 EndYear.append($('<option/>').text("Please select the end year"));
+				 }
+				
+			});
+		 });
+	 });
+	
+	$(function(){
+		 $("#endYear").change(function(){
+			selEndYear = $(this).val();
+		 });
+	 });
+	
+	$(function(){	
+	 	$("#trendButtonView").click(function(){
+			$.getJSON('../GraphAthleteSvtView',
+					{SportsCategory: selSportsCategory2, startyear: selStartYear, endyear: selEndYear},function(results){
+				
+					//draw the graph
+					drawGraphView(results);
+				});
+		});
+	});
+
+})(jQuery);
+
+function drawGraphView(results){
+ 	//refresh the div, to refresh the canvas
+	$('#ContainerView').empty();
+	$('#ContainerView').append('<canvas id="cvsView" width="900" height="400">[No canvas support]</canvas>');
+  	if(results){ 		
+	//get the graph
+	var graph = getGraphView('cvsView', results);
+	//draw the graph
+	graph.Draw();
+	}
+}
+
+function getGraphView(id, results){
+ 	var graphObject = results;
+	if(!bar4){	     	
+		   var bar4 = new RGraph.Bar(id, graphObject.golds);
+            bar4.Set('colors', ['#2A17B1', '#98ED00']); 
+            bar4.Set('labels', graphObject.athlete);
+            bar4.Set('numyticks', 5);
+            bar4.Set('ylabels.count', 5);
+            bar4.Set('gutter.left', 35);
+            bar4.Set('variant', '3d');
+            bar4.Set('strokestyle', 'transparent');
+            bar4.Set('hmargin.grouped', 0);
+            bar4.Set('scale.round', true);
+   
+	}
+	return bar4;
+}
+</script>
 <script>
 	
 	var username;
@@ -464,31 +697,8 @@ function getGraph(id, results){
 	var passwordSignUpFirst;
 	var passwordSignUpSecond;
 
-function validateUser() { 
-		var text = document.getElementById("Username").value;
-		if (text == ""){
-			document.getElementById("errorUsername").innerHTML="Provide Username";
-			document.getElementById("errorUsername").style.color = "red";
-			$("#errorUsername").show();
-		}else{
-			document.getElementById("errorUsername").innerHTML="OK";
-			document.getElementById("errorUsername").style.color = "green";
-			$("#errorUsername").show();
-		}
-	 }
-	 
-	 function validatePassword() { 
-		var text = document.getElementById("Password").value;
-		if (text == ""){
-			document.getElementById("errorPassword").innerHTML="Provide Password";
-			document.getElementById("errorPassword").style.color = "red";
-			$("#errorPassword").show();
-		}else{
-			document.getElementById("errorPassword").innerHTML="OK";
-			document.getElementById("errorPassword").style.color = "green";
-			$("#errorPassword").show();
-		}
-	 } 
+
+
 (function($){
 	
 	
@@ -508,7 +718,9 @@ function validateUser() {
 					$("#SignInTable").hide();
 					$("#messageFail").show();
 					$("#messageSuccess").hide();
+					
 				}
+				//draw the graph
 					
 				});
 		});
@@ -543,8 +755,6 @@ function validateUser() {
 		
 		$("#duplicate").hide();
 		$("#notmatched").hide();
-		$("#errorPassword").hide();
-		$("#errorUsername").hide();
 		$("#messageSuccessSignUp").hide();
 		//Fade in the Popup
 		$(SignUpBox).fadeIn(300);
@@ -577,8 +787,7 @@ function validateUser() {
 		
 		$("#messageSuccess").hide();
 		$("#messageFail").hide();
-		$("#errorPassword").hide();
-		$("#errorUsername").hide();
+		$("#signOutMessage").hide();
 		//Fade in the Popup
 		$(SignInBox).fadeIn(300);
 		
@@ -623,11 +832,10 @@ function validateUser() {
 					$("#SignUpTable").hide();
 					$("#notmatched").show();
 				}else{
-					$('#mask , .login-popup').fadeOut(300 , function() {
-						$('#mask').remove();  
-					});
+					$("#SignUpTable").hide();
 					$("#messageSuccessSignUp").html("Welcome Onboard "+usernameSignUp);
 					$("#messageSuccessSignUp").show();
+					
 					document.getElementById("UserAccount").innerHTML='Welcome '+usernameSignUp;
 					$("#logOutLink").show();
 					$("#accountInfo").show();
@@ -699,7 +907,22 @@ function validateUser() {
 
  })(jQuery);
 
+
 </script>
+<script type="text/javascript">
+
+      function activateTab(pageId) {
+          var tabCtrl = document.getElementById('tabCtrl');
+          var pageToActivate = document.getElementById(pageId);
+          for (var i = 0; i < tabCtrl.childNodes.length; i++) {
+              var node = tabCtrl.childNodes[i];
+              if (node.nodeType == 1) { /* Element */
+                  node.style.display = (node == pageToActivate) ? 'block' : 'none';
+              }
+          }
+      }
+
+    </script>
 
 <!-- thumbnailScroller script -->
 <link rel="stylesheet" type="text/css" href="./SignIn.css">
@@ -710,6 +933,7 @@ function validateUser() {
 <script src="../libraries/RGraph.common.tooltips.js" ></script>
 <script src="../libraries/RGraph.common.effects.js" ></script>
 <script src="../libraries/RGraph.line.js" ></script>
+<script type="text/javascript" src="../libraries/RGraph.bar.js" ></script>
 <script src="../libraries/jquery.min.js" ></script> 
 <script src="../libraries/RGraph.common.key.js" ></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
