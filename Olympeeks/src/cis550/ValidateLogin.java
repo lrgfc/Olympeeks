@@ -41,7 +41,11 @@ public class ValidateLogin extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
+    	Connection conn;
+        ResultSet rs;
+        String username, password, query;
+        Gson gson = new Gson();
+    	response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 	
 		try{

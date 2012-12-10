@@ -45,8 +45,24 @@ public class GraphAthleteSvtView extends HttpServlet {
 				Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				int count = 1;
-				while(rs.next() && count <=8){					
-						athlete.add(rs.getString("full_Name"));
+				while(rs.next() && count <=8){
+						String temp = rs.getString("full_Name");
+						int wordsCount = countWords(rs.getString("full_Name"));
+						StringBuffer athleteName = new StringBuffer();
+						String name;
+						if(wordsCount>3){
+							String[] words = rs.getString("full_Name").split(" ");							
+							for(int i =0; i<words.length; i++){
+								if(!words[i].equals("Nickname(s):")){
+								athleteName.append(words[i]);
+								athleteName.append(" ");}
+							}
+						name = athleteName.toString();
+						}else{
+							name = rs.getString("full_Name");
+						}
+						
+						athlete.add(name);
 						golds.add(Integer.parseInt(rs.getString("gold")));
 							count = count+1;
 					}	
@@ -75,7 +91,30 @@ public class GraphAthleteSvtView extends HttpServlet {
 			System.out.println("Cannot connect to DB");
 		}
 }
+	public static int countWords(String s){
 
+	    int counter = 0;
+
+	    boolean word = false;
+	    int endOfLine = s.length() - 1;
+
+	    for (int i = 0; i < s.length(); i++) {
+	        // if the char is letter, word = true.
+	        if (Character.isLetter(s.charAt(i)) == true && i != endOfLine) {
+	            word = true;
+	            // if char isnt letter and there have been letters before (word
+	            // == true), counter goes up.
+	        } else if (Character.isLetter(s.charAt(i)) == false && word == true) {
+	            counter++;
+	            word = false;
+	            // last word of String, if it doesnt end with nonLetter it
+	            // wouldnt count without this.
+	        } else if (Character.isLetter(s.charAt(i)) && i == endOfLine) {
+	            counter++;
+	        }
+	    }
+	    return counter;
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

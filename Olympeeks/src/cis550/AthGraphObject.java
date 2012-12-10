@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class AthGraphObject {
 	private ArrayList<Integer> years;
-	private ArrayList<Integer> golds;
+	private ArrayList<Integer> ranks;
 	
 	
-	public AthGraphObject(ArrayList<Integer> years, ArrayList<Integer> golds){
+	public AthGraphObject(ArrayList<Integer> years, ArrayList<Integer> ranks){
 		this.years = years;
-		this.golds = golds;
+		this.ranks = ranks;
 	}
 }

@@ -2,6 +2,9 @@
 <html>
 <head>
 <title>Olympeeks</title>
+<script src="./sha1.js" ></script>
+<script src="./libraries/jquery.min.js" ></script> 
+<link rel="stylesheet" type="text/css" href="./Athlete/SignIn.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 
 
@@ -10,19 +13,19 @@
 <style type="text/css">
 <!--
 body {
-	background-color:#f4f1d6;
+	background-image:url("./Images/newBackground6.png");
 	background-size: 100%;
 }
 
 #up_circle {
 	position: absolute;
-	left: 200px;
+	left: 220px;
 }
 
 #low_circle {
 	position: absolute;
-	left: 319px;
-	top: 270px;
+	left: 339px;
+	top: 240px;
 }
 -->
 </style>
@@ -34,7 +37,7 @@ body {
 		<header>
 			<nav>
 				<div id="logo">
-					<a href="#"><img src="./Images/PeekLogoSmall.png" alt="Logo here" /></a>
+					<a href="#"><img src="./Images/OlympeeksLogoSmall.png" alt="Logo here" /></a>
 				</div>
 
 
@@ -56,13 +59,13 @@ body {
 				
 					<div class="first">
 					<a href="./Sport/SportTopic.html">
-						<img src="./Images/sportNoInnerGlow.png" alt="Sport Topic" />
+						<img src="./Images/sportTransparent.png" alt="Sport Topic" />
 						</a>	
 					</div>
 					
 					<div class="second">
 					<a href="./Sport/SportTopic.html">
-						<img src="./Images/sportsLettersNew.png" alt="Sport Topic" />
+						<img src="./Images/sportAfter1.png" alt="Sport Topic" />
 					</a>
 					</div>
 		</div>
@@ -70,13 +73,13 @@ body {
 				
 					<div class="first">
 					<a href="./Country/CountryTopic.html">
-						<img src="./Images/countryNoInnerGlow.png" alt="Sport Topic" />
+						<img src="./Images/countryTransparent.png" alt="Sport Topic" />
 						</a>
 						
 					</div>
 					<div class="second">
 					<a href="./Country/CountryTopic.html">
-					<img src="./Images/countryLettersNew.png" alt="Sport Topic" />
+					<img src="./Images/countryAfter1.png" alt="Sport Topic" />
 					</a>
 					</div>
 		</div>
@@ -84,13 +87,13 @@ body {
 				
 					<div class="first">
 					<a href="./Female/FemaleTopic.html">
-						<img src="./Images/femaleNoInnerGlow.png" alt="Sport Topic" />
+						<img src="./Images/femaleTransparent.png" alt="Sport Topic" />
 					</a>
 						
 					</div>
 					<div class="second">
 					<a href="./Female/FemaleTopic.html">
-					<img src="./Images/femaleLetterNew.png" alt="Sport Topic" />
+					<img src="./Images/femaleAfter1.png" alt="Sport Topic" />
 					</a>
 					</div>
 		</div>
@@ -101,7 +104,7 @@ body {
 				
 					<div class="first">
 					
-						<img src="./Images/userCircleLetterNew.png" alt="User Login" />
+						<img src="./Images/userFrontNew1.png" alt="User Login" />
 						
 						
 					</div>
@@ -110,25 +113,29 @@ body {
 					
 					<div class="second">
 					
-						<img src="./Images/userLoginNew.png" alt="User Login" />
+						<img src="./Images/userAfter1.png" alt="User Login" />
 						
 					</div>
 					
-					<a href="#login_form" id="login_pop">Login</a>
-					<a href="#" id="register_pop">Sign Up</a>
+					<a href="#signIn-box" id='SignInButton'>Login</a>
+					<a href="#signUp-box" id="SignUpButton">Sign Up</a>
+					<p style='display:none' id = 'UserAccount'>Welcome</p>
+					<!-- <a href="#" style='display:none' id = 'accountInfo' name='accountInfo'>Account</a> -->
+                  	<a href="#signIn-box" style='display:none' id = 'logOutLink' name='logOutLink'>Logout</a>
+
 		</div>
 		
 		<div class="circle">
 				
 					<div class="first">
 					<a href="./Athlete/AthleteTopic.html">
-						<img src="./Images/athletesNoInnerGlow.png" alt="Athletes Topic" />
+						<img src="./Images/athleteTransparent.png" alt="Athletes Topic" />
 						</a>
 					</div>
 					
 					<div class="second">
 					<a href="./Athlete/AthleteTopic.html">
-						<img src="./Images/athleteLetterNew.png" alt="Athletes Login" />
+						<img src="./Images/athleteAfter1.png" alt="Athletes Login" />
 						</a>
 					</div>
 		</div>
@@ -142,7 +149,7 @@ body {
 </div>
 <a href="#x" class="overlay" id="login_form"></a>
 
-        <div class="popup">
+  <!--       <div class="popup">
 
             <h2>Olympeeks Login</h2>
            
@@ -159,7 +166,289 @@ body {
 
             <input type="button" value="Log In" />
             <a class="close" href="#close"></a>
-        </div>
+     
+       </div> -->
+<div id="signUp-box" class="login-popup">		
+		<form method="post" class="signin">
+			<fieldset class="textbox" id='SignUpTable' name='SignUpTable'>
+				<label class="username"> <span>Please enter your username</span> <input
+					id="usernameSignUp" name="usernameSignUp" value="" type="text"
+					placeholder="Username">
+				</label> 
+				<label class="password"> <span>Please enter your password</span> <input
+					id="passwordSignUpFirst" name="passwordSignUpFirst" value="" type="password"
+					placeholder="Password">
+				</label>
+				<label class="password"> <span>Please confirm your password</span> <input
+					id="passwordSignUpSecond" name="passwordSignUpSecond" value="" type="password"
+					placeholder="Password">
+				</label>
+				<button class="submit button" type="button" id="SignUp" name="SignUp">Sign Up</button>
+				
+			</fieldset>
+			<p id='duplicate' name='duplicate' style='display:none'>The username you entered has been chosen</p>
+			<p id='notmatched' name='notmatched' style='display:none'>The passwords you enter don't match</p>
+			<p id="messageSuccessSignUp" name ='messageSuccessSignUp' style='display:none'>Welcome Onboard</p>
+			
+		</form>
+	</div>
 
+<div id="signIn-box" class="login-popup">		
+		<form method="post" class="signin">
+			<fieldset class="textbox" id='SignInTable' name='SignInTable'>
+				<label class="username"> <span>Please enter your username</span> 
+
+				<input
+					id="Username" name="Username" value="" type="text"
+					placeholder="Username">
+				</label> 
+				<label id="errorUsername"></label>
+				
+				<label class="password"> <span>Please enter your password</span> <input
+					id="Password" name="Password" value="" type="password"
+					placeholder="Password">
+				</label>
+				<label id="errorPassword"></label>
+				<button class="submit button" type="button" id="SignIn" name="SignIn">Sign In</button>
+				
+			</fieldset>
+			<p id="messageSuccess" name ='messageSuccess' style='display:none'>Welcome back</p>
+			<p id="messageFail" name = 'messageFail' style='display:none'>Wrong Password</p>
+			<p id='signOutMessage' name='signOutMessage' style='display:none'></p>
+		</form>
+	</div>
+<script>
+var username;
+	var usernameSignUp;
+	var password;
+	var passwordSignUpFirst;
+	var passwordSignUpSecond;
+
+(function($){
+	window.onload=function(){
+		 $.getJSON('./SignInOnLoad',function(results){
+				// $('>option', country).remove();
+				 if(results!='out'){
+						document.getElementById("UserAccount").innerHTML="Welcome "+results;
+						$("#UserAccount").show();
+						$("#logOutLink").show();
+						$("#accountInfo").show();
+						$("#SignInButton").hide();
+						$("#SignUpButton").hide();
+					}; 
+				 })
+	}
+	
+	 $('#SignIn').click(function(){
+		$.getJSON('./ValidateLogin',{Username: username, Password: password}, function(results){
+				if(results=='Success'){
+					$("#SignInTable").hide();
+					$("#messageSuccess").html("Welcome back "+username);
+					$("#messageSuccess").show();
+					$("#messageFail").hide();
+					document.getElementById("UserAccount").innerHTML="Welcome "+username;
+					$("#logOutLink").show();
+					$("#UserAccount").show();
+					$("#accountInfo").show();
+					$("#SignInButton").hide();
+					$("#SignUpButton").hide();
+				}else{
+					$("#SignInTable").hide();
+					$("#messageFail").show();
+					$("#messageSuccess").hide();
+					
+				}
+				//draw the graph
+					
+				});
+		});
+
+
+
+	
+	 
+	 $(function(){
+		$("#Username").change(function(){
+		username = $(this).val();
+	 });
+ 	});
+
+	 
+	 $(function (){
+	$("#Password").change(function(){
+		password = generate($(this).val(),'olympics');
+	 });
+ 	});
+
+
+	 
+	$('#SignUpButton').click(function() {
+		
+      //Getting the variable's value from a link 
+		var SignUpBox = $(this).attr('href');
+		$("#usernameSignUp").val("").empty();
+		$("#passwordSignUpFirst").val("").empty();
+		$("#passwordSignUpSecond").val("").empty();
+      	$("#SignUpTable").show();
+		
+		$("#duplicate").hide();
+		$("#notmatched").hide();
+		$("#messageSuccessSignUp").hide();
+		//Fade in the Popup
+		$(SignUpBox).fadeIn(300);
+		
+		//Set the center alignment padding + border see css style
+		var popMargTop = ($(SignUpBox).height() + 24) / 2; 
+		var popMargLeft = ($(SignUpBox).width() + 24) / 2; 
+		
+		$(SignUpBox).css({ 
+			'margin-top' : -popMargTop,
+			'margin-left' : -popMargLeft
+		});
+		
+		// Add the mask to body
+		$('body').append('<div id="mask"></div>');
+		$('#mask').fadeIn(300);
+		
+		return false;
+	});
+
+
+	 	 
+	$('#SignInButton').click(function() {
+		
+      //Getting the variable's value from a link 
+		var SignInBox = $(this).attr('href');
+		$("#Username").val("").empty();
+		$("#Password").val("").empty();
+        $("#SignInTable").show();
+		
+		$("#messageSuccess").hide();
+		$("#messageFail").hide();
+		$("#signOutMessage").hide();
+		//Fade in the Popup
+		$(SignInBox).fadeIn(300);
+		
+		//Set the center alignment padding + border see css style
+		var popMargTop = ($(SignInBox).height() + 24) / 2; 
+		var popMargLeft = ($(SignInBox).width() + 24) / 2; 
+		
+		$(SignInBox).css({ 
+			'margin-top' : -popMargTop,
+			'margin-left' : -popMargLeft
+		});
+		
+		// Add the mask to body
+		$('body').append('<div id="mask"></div>');
+		$('#mask').fadeIn(300);
+		
+		return false;
+	});
+
+	
+	// When clicking on the button close or the mask layer the popup closed
+	
+	$('a.close, #mask').live('click', function() { 
+	  $('#mask , .login-popup').fadeOut(300 , function() {
+		$('#mask').remove();  
+	}); 
+	return false;
+	});
+
+
+	 
+	
+		 $(function(){
+			$("#SignUp").click(function(){
+			$.getJSON('./SignUp',{Username: usernameSignUp, PasswordFirst: passwordSignUpFirst,
+				PasswordSecond: passwordSignUpSecond}, function(results){
+				if(results=='duplicate'){
+					$("#SignUpTable").hide();
+					$("#duplicate").show();
+					
+				}else if(results=='NotMatched'){
+					$("#SignUpTable").hide();
+					$("#notmatched").show();
+				}else{
+					$("#SignUpTable").hide();
+					$("#messageSuccessSignUp").html("Welcome Onboard "+usernameSignUp);
+					$("#messageSuccessSignUp").show();
+					
+					document.getElementById("UserAccount").innerHTML="Welcome "+usernameSignUp;
+					$("#UserAccount").show();
+					$("#accountInfo").show();
+					$("#logOutLink").show();	
+					$("#SignInButton").hide();
+					$("#SignUpButton").hide();
+				}
+				//draw the graph
+					
+				});
+		 });
+	 	});
+
+				$("#logOutLink").click(function(){
+					var SignInBox = $(this).attr('href');
+					$(SignInBox).fadeIn(300);
+					
+					//Set the center alignment padding + border see css style
+					var popMargTop = ($(SignInBox).height() + 24) / 2; 
+					var popMargLeft = ($(SignInBox).width() + 24) / 2; 
+					
+					$(SignInBox).css({ 
+						'margin-top' : -popMargTop,
+						'margin-left' : -popMargLeft
+					});
+					
+					// Add the mask to body
+					$('body').append('<div id="mask"></div>');
+					$('#mask').fadeIn(300);
+					$("#messageSuccess").hide();
+					$("#messageFail").hide();
+					$("#errorPassword").hide();
+					$("#errorUsername").hide();
+					
+					$.getJSON('./LogOut', {},function(results){
+					
+					$("#SignInTable").hide();
+					document.getElementById("signOutMessage").innerHTML=results;
+					$("#signOutMessage").show();
+					if(results=="Log out succeed"){
+						$("#SignInButton").show();	
+						$("#SignUpButton").show();	
+						$("#logOutLink").hide();
+						$("#UserAccount").hide();
+						$("#accountInfo").hide();
+					}
+					});
+			 });
+
+	
+		$(function() {
+			$("#usernameSignUp").change(function() {
+				usernameSignUp = $(this).val();
+			});
+		});
+	
+
+	
+		$(function() {
+			$("#passwordSignUpFirst").change(function() {
+				passwordSignUpFirst = generate($(this).val(),'olympics');
+			});
+		});
+
+
+	
+		$(function() {
+			$("#passwordSignUpSecond").change(function() {
+				passwordSignUpSecond = generate($(this).val(),'olympics');
+			});
+		});
+
+ })(jQuery);
+
+
+</script>
 </body>
 </html>

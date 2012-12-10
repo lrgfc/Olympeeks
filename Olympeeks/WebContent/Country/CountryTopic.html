@@ -43,7 +43,7 @@ header h1 .big{font-size: 34px; color:#d56916;}
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Topics <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Country</a></li>
-                  <li><a href="../Athlete/AthleteTopic.html">Athelete</a></li>
+                  <li><a href="../Athlete/AthleteTopic.html">Athlete</a></li>
                   <li><a href="../Sport/SportTopic.html">Sport</a></li>
                   <li><a href="../Female/FemaleTopic.html">Female</a></li>
                 </ul>
@@ -51,10 +51,11 @@ header h1 .big{font-size: 34px; color:#d56916;}
               <li><a href="#Request">Add Request</a></li>
               <li><a href="#About">About</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>User<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id='UserAccount' name='UserAccount'><i class="icon-user icon-white"></i><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#"><i class="icon-arrow-right"></i>Login</a></li>
-                  <li><a href="#"><i class="icon-arrow-left"></i>Logout</a></li>
+                  <li><a href="#signIn-box" id='SignInButton' name='SignInButton'><i class="icon-arrow-right"></i>Login</a></li>
+                  <li><a href="#" style='display:none' id = 'accountInfo' name='accountInfo'><i class="icon-arrow-left"></i>Account</a></li>
+                  <li><a href="#signIn-box" style='display:none' id = 'logOutLink' name='logOutLink'><i class="icon-arrow-left"></i>Logout</a></li>
                 </ul>
               </li>
               <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
@@ -76,7 +77,7 @@ header h1 .big{font-size: 34px; color:#d56916;}
             <div class="carousel-caption">
               <h1>Country Topic</h1>
               <p class="lead">Follow the Country you like, see their trends you want. Here, at Olympeeks, you can get the data you want.</p>
-              <a class="btn btn-large btn-primary" href="#">Sign up today</a>
+              <a class="btn btn-large btn-primary" href="#signUp-box" id="SignUpButton" name="SignUpButton">Sign up today</a>
             </div>
           </div>
         </div>
@@ -190,6 +191,55 @@ header h1 .big{font-size: 34px; color:#d56916;}
 </div>
 </div>
 <!-- thumbnail scroller markup end -->
+<div id="signUp-box" class="login-popup">		
+		<form method="post" class="signin">
+			<fieldset class="textbox" id='SignUpTable' name='SignUpTable'>
+				<label class="username"> <span>Please enter your username</span> <input
+					id="usernameSignUp" name="usernameSignUp" value="" type="text"
+					placeholder="Username">
+				</label> 
+				<label class="password"> <span>Please enter your password</span> <input
+					id="passwordSignUpFirst" name="passwordSignUpFirst" value="" type="password"
+					placeholder="Password">
+				</label>
+				<label class="password"> <span>Please confirm your password</span> <input
+					id="passwordSignUpSecond" name="passwordSignUpSecond" value="" type="password"
+					placeholder="Password">
+				</label>
+				<button class="submit button" type="button" id="SignUp" name="SignUp">Sign Up</button>
+				
+			</fieldset>
+			<p id='duplicate' name='duplicate' style='display:none'>The username you entered has been chosen</p>
+			<p id='notmatched' name='notmatched' style='display:none'>The passwords you enter don't match</p>
+			<p id="messageSuccessSignUp" name ='messageSuccessSignUp' style='display:none'>Welcome Onboard</p>
+			
+		</form>
+	</div>
+
+<div id="signIn-box" class="login-popup">		
+		<form method="post" class="signin">
+			<fieldset class="textbox" id='SignInTable' name='SignInTable'>
+				<label class="username"> <span>Please enter your username</span> 
+
+				<input
+					id="Username" name="Username" value="" type="text"
+					placeholder="Username">
+				</label> 
+				<label id="errorUsername"></label>
+				
+				<label class="password"> <span>Please enter your password</span> <input
+					id="Password" name="Password" value="" type="password"
+					placeholder="Password">
+				</label>
+				<label id="errorPassword"></label>
+				<button class="submit button" type="button" id="SignIn" name="SignIn">Sign In</button>
+				
+			</fieldset>
+			<p id="messageSuccess" name ='messageSuccess' style='display:none'>Welcome back</p>
+			<p id="messageFail" name = 'messageFail' style='display:none'>Wrong Password</p>
+			<p id='signOutMessage' name='signOutMessage' style='display:none'></p>
+		</form>
+	</div>
 
 <script>
 /* jQuery.noConflict() for using the plugin along with other libraries. 
@@ -206,6 +256,18 @@ var selEndYear;
 var graphs;
 
 window.onload=function(){ 
+	
+	 $.getJSON('../SignInOnLoad',function(results){
+			// $('>option', country).remove();
+			 if(results!='out'){
+					document.getElementById("UserAccount").innerHTML="<i class='icon-user icon-white'></i>Welcome "+results + "<b class='caret'></b>";
+					$("#logOutLink").show();
+					$("#accountInfo").show();
+					$("#SignInButton").hide();
+				}else{
+					document.getElementById("UserAccount").innerHTML="<i class='icon-user icon-white'></i>User<b class='caret'></b>";
+				}; 
+			 })
 	$("#tS2").thumbnailScroller({ 
 		scrollerType:"hoverPrecise", 
 		scrollerOrientation:"horizontal", 
@@ -235,7 +297,7 @@ window.onload=function(){
 	 // do the recommendation system for the login user
 	 $.getJSON('../RmdSystem',function(results){
 	 		if(results == 'fail'){
-	 			alert("NO login, No recommendation!");
+
 	 		}else{
 	 			//alert(results);
 	 			var rmdCountry =  new Array();
@@ -466,7 +528,230 @@ $("#rank5").click(function(){
 		return line;
  }
 </script>
+
+<script>
+	
+	var username;
+	var usernameSignUp;
+	var password;
+	var passwordSignUpFirst;
+	var passwordSignUpSecond;
+
+
+
+(function($){
+	
+	
+	 $('#SignIn').click(function(){
+		$.post('../ValidateLogin',{Username: username, Password: password}, function(results){
+				if(results=='Success'){
+					$("#SignInTable").hide();
+					$("#messageSuccess").html("Welcome back "+username);
+					$("#messageSuccess").show();
+					$("#messageFail").hide();
+					var a = $("#UserAccount");
+					document.getElementById("UserAccount").innerHTML="<i class='icon-user icon-white'></i>Welcome "+username + "<b class='caret'></b>";
+					$("#logOutLink").show();
+					$("#accountInfo").show();
+					$("#SignInButton").hide();
+				}else{
+					$("#SignInTable").hide();
+					$("#messageFail").show();
+					$("#messageSuccess").hide();
+					
+				}
+				//draw the graph
+					
+				},'json');
+		});
+
+
+
+	
+	 
+	 $(function(){
+		$("#Username").change(function(){
+		username = $(this).val();
+	 });
+ 	});
+
+	 
+	 $(function (){
+	$("#Password").change(function(){
+		password = generate($(this).val(),'olympics');
+	 });
+ 	});
+
+
+	 
+	$('#SignUpButton').click(function() {
+		
+      //Getting the variable's value from a link 
+		var SignUpBox = $(this).attr('href');
+		$("#usernameSignUp").val("").empty();
+		$("#passwordSignUpFirst").val("").empty();
+		$("#passwordSignUpSecond").val("").empty();
+      	$("#SignUpTable").show();
+		
+		$("#duplicate").hide();
+		$("#notmatched").hide();
+		$("#messageSuccessSignUp").hide();
+		//Fade in the Popup
+		$(SignUpBox).fadeIn(300);
+		
+		//Set the center alignment padding + border see css style
+		var popMargTop = ($(SignUpBox).height() + 24) / 2; 
+		var popMargLeft = ($(SignUpBox).width() + 24) / 2; 
+		
+		$(SignUpBox).css({ 
+			'margin-top' : -popMargTop,
+			'margin-left' : -popMargLeft
+		});
+		
+		// Add the mask to body
+		$('body').append('<div id="mask"></div>');
+		$('#mask').fadeIn(300);
+		
+		return false;
+	});
+
+
+	 	 
+	$('#SignInButton').click(function() {
+		
+      //Getting the variable's value from a link 
+		var SignInBox = $(this).attr('href');
+		$("#Username").val("").empty();
+		$("#Password").val("").empty();
+        $("#SignInTable").show();
+		
+		$("#messageSuccess").hide();
+		$("#messageFail").hide();
+		$("#signOutMessage").hide();
+		//Fade in the Popup
+		$(SignInBox).fadeIn(300);
+		
+		//Set the center alignment padding + border see css style
+		var popMargTop = ($(SignInBox).height() + 24) / 2; 
+		var popMargLeft = ($(SignInBox).width() + 24) / 2; 
+		
+		$(SignInBox).css({ 
+			'margin-top' : -popMargTop,
+			'margin-left' : -popMargLeft
+		});
+		
+		// Add the mask to body
+		$('body').append('<div id="mask"></div>');
+		$('#mask').fadeIn(300);
+		
+		return false;
+	});
+
+	
+	// When clicking on the button close or the mask layer the popup closed
+	
+	$('a.close, #mask').live('click', function() { 
+	  $('#mask , .login-popup').fadeOut(300 , function() {
+		$('#mask').remove();  
+	}); 
+	return false;
+	});
+
+
+	 
+	
+		 $(function(){
+			$("#SignUp").click(function(){
+			$.post('../SignUp',{Username: usernameSignUp, PasswordFirst: passwordSignUpFirst,
+				PasswordSecond: passwordSignUpSecond}, function(results){
+				if(results=='duplicate'){
+					$("#SignUpTable").hide();
+					$("#duplicate").show();
+					
+				}else if(results=='NotMatched'){
+					$("#SignUpTable").hide();
+					$("#notmatched").show();
+				}else{
+					$("#SignUpTable").hide();
+					$("#messageSuccessSignUp").html("Welcome Onboard "+usernameSignUp);
+					$("#messageSuccessSignUp").show();
+					
+					document.getElementById("UserAccount").innerHTML="<i class='icon-user icon-white'></i>Welcome "+usernameSignUp + "<b class='caret'></b>";
+					$("#logOutLink").show();
+					$("#accountInfo").show();
+					$("#SignInButton").hide();
+				}
+				//draw the graph
+					
+				},'json');
+		 });
+	 	});
+
+				$("#logOutLink").click(function(){
+					var SignInBox = $(this).attr('href');
+					$(SignInBox).fadeIn(300);
+					
+					//Set the center alignment padding + border see css style
+					var popMargTop = ($(SignInBox).height() + 24) / 2; 
+					var popMargLeft = ($(SignInBox).width() + 24) / 2; 
+					
+					$(SignInBox).css({ 
+						'margin-top' : -popMargTop,
+						'margin-left' : -popMargLeft
+					});
+					
+					// Add the mask to body
+					$('body').append('<div id="mask"></div>');
+					$('#mask').fadeIn(300);
+					$("#messageSuccess").hide();
+					$("#messageFail").hide();
+					$("#errorPassword").hide();
+					$("#errorUsername").hide();
+					
+					$.getJSON('../LogOut', {},function(results){
+					
+					$("#SignInTable").hide();
+					document.getElementById("signOutMessage").innerHTML=results;
+					$("#signOutMessage").show();
+					if(results=="Log out succeed"){
+						$("#SignInButton").show();	
+						$("#logOutLink").hide();
+						$("#accountInfo").hide();
+						document.getElementById("UserAccount").innerHTML="<i class='icon-user icon-white'></i>User<b class='caret'></b>";
+					}
+					});
+			 });
+
+	
+		$(function() {
+			$("#usernameSignUp").change(function() {
+				usernameSignUp = $(this).val();
+			});
+		});
+	
+
+	
+		$(function() {
+			$("#passwordSignUpFirst").change(function() {
+				passwordSignUpFirst = generate($(this).val(),'olympics');
+			});
+		});
+
+
+	
+		$(function() {
+			$("#passwordSignUpSecond").change(function() {
+				passwordSignUpSecond = generate($(this).val(),'olympics');
+			});
+		});
+
+ })(jQuery);
+
+
+</script>
 <!-- thumbnailScroller script -->
+<link rel="stylesheet" type="text/css" href="../Athlete/SignIn.css">
+<script src="../sha1.js" ></script> 
 <script src="../jquery.thumbnailScroller.js"></script>
 <script src="../libraries/RGraph.common.core.js" ></script>
 <script src="../libraries/RGraph.common.dynamic.js" ></script>

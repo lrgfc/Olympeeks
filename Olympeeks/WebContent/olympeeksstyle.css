@@ -9,7 +9,7 @@
 	width: 140px;
 	position:absolute;
 	right:10px;
-	top: 20px;
+	top: 50px;
 }
 
 .upcircle {
@@ -90,27 +90,138 @@
     transition: all 400ms linear;
 }
 
-#login_pop {
+
+
+#SignInButton {
+	color: White;
 	font-family: Rockwell Std;
-	font-size: 36px;
-	color: white;
+	font-size:30px;
+	width: 140px;
+	heigth: 60px;
+	top: 60px;
+	left:40px;	
+	text-decoration: none;
+	text-align: center;
+	vertical-align:center;
 	position: absolute;
-	top: 50px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#AE6E07), to(#AE4707));
+	-webkit-border-radius: .3em; 
+	-moz-border-radius: .3em;
+	border-radius: .3em;
+	-webkit-box-shadow: 2px 2px 2px rgba(0,0,0,.3);
+	-moz-box-shadow: 2px 2px 2px rgba(0,0,0,.3);
+	box-shadow:inset 0 0 0 1px #617586,inset 0 0 40px 5px rgba(0,0,0,.3),0 0 2px 1px rgba(0,0,0,.5);
+    margin:10px 10px 20px;
+    text-shadow:0px 0px 5px rgba(0, 0, 0, 0.75);
+    line-height : 45px;
+	opacity:0;
+}
+
+.low_circle .circle:hover #SignInButton {
+	opacity:1;
+	 box-shadow:inset 0 0 0 1px #617586,inset 0 0 40px 5px rgba(0,0,0,.25),0 0 2px 1px rgba(0,0,0,.5);
+	
+}
+
+#SignInButton:active {
+	color: white;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	
+}
+
+#SignUpButton {
+	color: White;
+	font-family: Rockwell Std;
+	font-size:30px;
+	width: 140px;
+	heigth: 60px;
+	top: 120px;
+	left:40px;	
+	text-decoration: none;
+	text-align: center;
+	vertical-align:center;
+	position: absolute;
+	background: -webkit-gradient(linear, left top, left bottom, from(#AE6E07), to(#AE4707));
+	-webkit-border-radius: .3em; 
+	-moz-border-radius: .3em;
+	border-radius: .3em;
+	-webkit-box-shadow: 2px 2px 2px rgba(0,0,0,.3);
+	-moz-box-shadow: 2px 2px 2px rgba(0,0,0,.3);
+	box-shadow:inset 0 0 0 1px #617586,inset 0 0 40px 5px rgba(0,0,0,.3),0 0 2px 1px rgba(0,0,0,.5);
+    margin:10px 10px 20px;
+    text-shadow:0px 0px 5px rgba(0, 0, 0, 0.75);
+    line-height : 45px;
+	opacity:0;
+}
+
+.low_circle .circle:hover #SignUpButton {
+	opacity:1;
+	 box-shadow:inset 0 0 0 1px #617586,inset 0 0 40px 5px rgba(0,0,0,.25),0 0 2px 1px rgba(0,0,0,.5);
+	
+}
+
+#SignUpButton:active {
+	color: white;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	
+}
+
+#UserAccount {
+	font-family: Rockwell Std;
+	font-size: 26px;
+	color: #AE6E07;
+	position: absolute;
+	top: 40px;
 	left:75px;
 	opacity:0;
 	
 }
-
-#register_pop {
+#accountInfo {
 	font-family: Rockwell Std;
-	font-size: 36px;
+	font-size: 18px;
 	color: white;
 	position: absolute;
-	top: 120px;
-	left:60px;
+	top: 90px;
+	left:75px;
 	opacity:0;
+	
+}
+#logOutLink {
+	color: White;
+	font-family: Rockwell Std;
+	font-size:30px;
+	width: 140px;
+	heigth: 60px;
+	top: 130px;
+	left:40px;	
+	text-decoration: none;
+	text-align: center;
+	vertical-align:center;
+	position: absolute;
+	background: -webkit-gradient(linear, left top, left bottom, from(#AE6E07), to(#AE4707));
+	-webkit-border-radius: .3em; 
+	-moz-border-radius: .3em;
+	border-radius: .3em;
+	-webkit-box-shadow: 2px 2px 2px rgba(0,0,0,.3);
+	-moz-box-shadow: 2px 2px 2px rgba(0,0,0,.3);
+	box-shadow:inset 0 0 0 1px #617586,inset 0 0 40px 5px rgba(0,0,0,.3),0 0 2px 1px rgba(0,0,0,.5);
+    margin:10px 10px 20px;
+    text-shadow:0px 0px 5px rgba(0, 0, 0, 0.75);
+    line-height : 45px;
+	opacity:0;
+	
 }
 
+.low_circle .circle:hover #logOutLink {
+	opacity:1;
+	 box-shadow:inset 0 0 0 1px #617586,inset 0 0 40px 5px rgba(0,0,0,.25),0 0 2px 1px rgba(0,0,0,.5);
+	
+}
+
+#logOutLink:active {
+	color: white;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+}
 
 .up_circle .circle:hover .first{
     opacity:0;
@@ -128,11 +239,23 @@
 	opacity:1;
 }
 
-.low_circle .circle:hover #login_pop{
+.low_circle .circle:hover #SignInButton{
 	opacity:1;
 }
 
-.low_circle .circle:hover #register_pop{
+.low_circle .circle:hover #SignUpButton{
+	opacity:1;
+}
+
+.low_circle .circle:hover #UserAccount{
+	opacity:1;
+}
+
+.low_circle .circle:hover #accountInfo{
+	opacity:1;
+}
+
+.low_circle .circle:hover #logOutLink{
 	opacity:1;
 }
 

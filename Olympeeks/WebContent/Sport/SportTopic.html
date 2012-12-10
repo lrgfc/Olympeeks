@@ -38,23 +38,24 @@ header h1 .big{font-size: 34px; color:#d56916;}
           <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li><a href="#">Home</a></li>
+              <li><a href="../Olympeeks.html">Home</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Topics <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Country</a></li>
-                  <li><a href="#">Athelete</a></li>
+                  <li><a href="../Country/CountryTopic.html">Country</a></li>
+                  <li><a href="../Athlete/AthleteTopic.html">Athlete</a></li>
                   <li><a href="#">Sport</a></li>
-                  <li><a href="#">Female</a></li>
+                  <li><a href="../Female/FemaleTopic.html">Female</a></li>
                 </ul>
               </li>
               <li><a href="#Request">Add Request</a></li>
               <li><a href="#About">About</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>User<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id='UserAccount' name='UserAccount'><i class="icon-user icon-white"></i>User<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#"><i class="icon-arrow-right"></i>Login</a></li>
-                  <li><a href="#"><i class="icon-arrow-left"></i>Logout</a></li>
+                  <li><a href="#signIn-box" id='SignInButton' name='SignInButton'><i class="icon-arrow-right"></i>Login</a></li>
+                  <li><a href="#" style='display:none' id = 'accountInfo' name='accountInfo'><i class="icon-arrow-left"></i>Account</a></li>
+                  <li><a href="#signIn-box" style='display:none' id = 'logOutLink' name='logOutLink'><i class="icon-arrow-left"></i>Logout</a></li>
                 </ul>
               </li>
               <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
@@ -71,12 +72,12 @@ header h1 .big{font-size: 34px; color:#d56916;}
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
         <div class="item active">
-          <img src="basketball.jpg" alt="">
+          <img src="basketball.png" alt="">
           <div class="container">
             <div class="carousel-caption">
               <h1>Follow your favorite sport</h1>
               <p class="lead">There are so many exciting sports in Olympic games. From here, you can learn more about their story and what are those powerhouses in each sport.</p>
-              <a class="btn btn-large btn-primary" href="#">Sign up today</a>
+              <a class="btn btn-large btn-primary" href="#signUp-box" id="SignUpButton" name="SignUpButton">Sign up today</a>
             </div>
           </div>
         </div>
@@ -167,26 +168,26 @@ header h1 .big{font-size: 34px; color:#d56916;}
 <div id="tS2" class="jThumbnailScroller" style="margin-top:100px;">
     <div class="jTscrollerContainer">
         <div class="jTscroller">
-            <a class="recommend"><img src="thumbs/img1.jpg" /></a>
-            <a class="recommend"><img src="thumbs/img2.jpg" /></a>
-            <a><img src="thumbs/img3.jpg" /></a>
-            <a><img src="thumbs/img4.jpg" /></a>
-            <a><img src="thumbs/img5.jpg" /></a>
-            <a><img src="thumbs/img6.jpg" /></a>
-            <a><img src="thumbs/img7.jpg" /></a>
-            <a><img src="thumbs/img8.jpg" /></a>
-            <a><img src="thumbs/img9.jpg" /></a>
-            <a><img src="thumbs/img10.jpg" /></a>
-            <a><img src="thumbs/img11.jpg" /></a>
-            <a><img src="thumbs/img12.jpg" /></a>
-            <a><img src="thumbs/img13.jpg" /></a>
-            <a><img src="thumbs/img14.jpg" /></a>
-            <a><img src="thumbs/img15.jpg" /></a>
-            <a><img src="thumbs/img16.jpg" /></a>
-            <a><img src="thumbs/img17.jpg" /></a>
-            <a><img src="thumbs/img18.jpg" /></a>
-            <a><img src="thumbs/img19.jpg" /></a>
-            <a><img src="thumbs/img20.jpg" /></a>
+            <a class="recommend"><img src="thumbs/Basketball.png" /></a>
+            <a class="recommend"><img src="thumbs/Archery.jpg" /></a>
+            <a><img src="thumbs/Athletics.jpg" /></a>
+            <a><img src="thumbs/Badminton.jpg" /></a>
+            <a><img src="thumbs/Baseball.jpg" /></a>
+            <a><img src="thumbs/Boxing.jpg" /></a>
+            <a><img src="thumbs/Football.jpg" /></a>
+            <a><img src="thumbs/Swimming.jpg" /></a>
+            <a><img src="thumbs/Table Tennis.jpg" /></a>
+            <a><img src="thumbs/Tennis.jpg" /></a>
+            <a><img src="thumbs/Volleyball.jpg" /></a>
+            <a><img src="thumbs/Cycling.jpg" /></a>
+            <a><img src="thumbs/Fencing.jpg" /></a>
+            <a><img src="thumbs/Rowing.jpg" /></a>
+            <a><img src="thumbs/Sailing.jpg" /></a>
+            <a><img src="thumbs/Shooting.jpg" /></a>
+            <a><img src="thumbs/Softball.jpg" /></a>
+            <a><img src="thumbs/Taekwondo.jpg" /></a>
+            <a><img src="thumbs/Weightlifting.jpg" /></a>
+            <a><img src="thumbs/Wrestling.jpg" /></a>
         </div>
     </div>
     <a href="#" class="jTscrollerPrevButton"></a>
@@ -195,6 +196,57 @@ header h1 .big{font-size: 34px; color:#d56916;}
 </div>
 
 <!-- thumbnail scroller markup end -->
+
+  <div id="signUp-box" class="login-popup">   
+    <form method="post" class="signin">
+      <fieldset class="textbox" id='SignUpTable' name='SignUpTable'>
+        <label class="username"> <span>Please enter your username</span> <input
+          id="usernameSignUp" name="usernameSignUp" value="" type="text"
+          placeholder="Username">
+        </label> 
+        <label class="password"> <span>Please enter your password</span> <input
+          id="passwordSignUpFirst" name="passwordSignUpFirst" value="" type="password"
+          placeholder="Password">
+        </label>
+        <label class="password"> <span>Please confirm your password</span> <input
+          id="passwordSignUpSecond" name="passwordSignUpSecond" value="" type="password"
+          placeholder="Password">
+        </label>
+        <button class="submit button" type="button" id="SignUp" name="SignUp">Sign Up</button>
+        
+      </fieldset>
+      <p id='duplicate' name='duplicate' style='display:none'>The username you entered has been chosen</p>
+      <p id='notmatched' name='notmatched' style='display:none'>The passwords you enter don't match</p>
+      <p id="messageSuccessSignUp" name ='messageSuccessSignUp' style='display:none'>Welcome Onboard</p>
+      
+    </form>
+  </div>
+
+<div id="signIn-box" class="login-popup">   
+    <form method="post" class="signin">
+      <fieldset class="textbox" id='SignInTable' name='SignInTable'>
+        <label class="username"> <span>Please enter your username</span> 
+
+        <input
+          id="Username" name="Username" value="" type="text"
+          placeholder="Username">
+        </label> 
+        <label id="errorUsername"></label>
+        
+        <label class="password"> <span>Please enter your password</span> <input
+          id="Password" name="Password" value="" type="password"
+          placeholder="Password">
+        </label>
+        <label id="errorPassword"></label>
+        <button class="submit button" type="button" id="SignIn" name="SignIn">Sign In</button>
+        
+      </fieldset>
+      <p id="messageSuccess" name ='messageSuccess' style='display:none'>Welcome back</p>
+      <p id="messageFail" name = 'messageFail' style='display:none'>Wrong Password</p>
+      <p id='signOutMessage' name='signOutMessage' style='display:none'></p>
+    </form>
+  </div>
+
 <script>
 /* jQuery.noConflict() for using the plugin along with other libraries. 
    You can remove it if you won't use other libraries (e.g. prototype, scriptaculous etc.) or 
@@ -224,6 +276,16 @@ window.onload=function(){
         autoScrollingEasing:"easeInOutQuad", 
         autoScrollingDelay:500 
     });
+    $.getJSON('../SignInOnLoad',function(results){
+      // $('>option', country).remove();
+       if(results!='out'){
+          document.getElementById("UserAccount").innerHTML="<i class='icon-user icon-white'></i>Welcome "+results + "<b class='caret'></b>";
+          $("#logOutLink").show();
+          $("#accountInfo").show();
+          $("#SignInButton").hide();
+        }; 
+       })
+
      $.getJSON('../SportSvt',{sport: false},function(results){
          var sport = $("#sport");
         // $('>option', country).remove();
@@ -463,8 +525,231 @@ $("#trendButton").click(function(){
      RGraph.Effects.Line.jQuery.Trace(graph);
 }
 </script>
+
+<script>
+  
+  var username;
+  var usernameSignUp;
+  var password;
+  var passwordSignUpFirst;
+  var passwordSignUpSecond;
+
+
+
+(function($){
+  
+  
+   $('#SignIn').click(function(){
+    $.post('../ValidateLogin',{Username: username, Password: password}, function(results){
+        if(results=='Success'){
+          $("#SignInTable").hide();
+          $("#messageSuccess").html("Welcome back "+username);
+          $("#messageSuccess").show();
+          $("#messageFail").hide();
+          var a = $("#UserAccount");
+          document.getElementById("UserAccount").innerHTML="<i class='icon-user icon-white'></i>Welcome "+username + "<b class='caret'></b>";
+          $("#logOutLink").show();
+          $("#accountInfo").show();
+          $("#SignInButton").hide();
+        }else{
+          $("#SignInTable").hide();
+          $("#messageFail").show();
+          $("#messageSuccess").hide();
+          
+        }
+        //draw the graph
+          
+        },'json');
+    });
+
+
+
+  
+   
+   $(function(){
+    $("#Username").change(function(){
+    username = $(this).val();
+   });
+  });
+
+   
+   $(function (){
+  $("#Password").change(function(){
+    password = generate($(this).val(),'olympics');
+   });
+  });
+
+
+   
+  $('#SignUpButton').click(function() {
+    
+      //Getting the variable's value from a link 
+    var SignUpBox = $(this).attr('href');
+    $("#usernameSignUp").val("").empty();
+    $("#passwordSignUpFirst").val("").empty();
+    $("#passwordSignUpSecond").val("").empty();
+        $("#SignUpTable").show();
+    
+    $("#duplicate").hide();
+    $("#notmatched").hide();
+    $("#messageSuccessSignUp").hide();
+    //Fade in the Popup
+    $(SignUpBox).fadeIn(300);
+    
+    //Set the center alignment padding + border see css style
+    var popMargTop = ($(SignUpBox).height() + 24) / 2; 
+    var popMargLeft = ($(SignUpBox).width() + 24) / 2; 
+    
+    $(SignUpBox).css({ 
+      'margin-top' : -popMargTop,
+      'margin-left' : -popMargLeft
+    });
+    
+    // Add the mask to body
+    $('body').append('<div id="mask"></div>');
+    $('#mask').fadeIn(300);
+    
+    return false;
+  });
+
+
+     
+  $('#SignInButton').click(function() {
+    
+      //Getting the variable's value from a link 
+    var SignInBox = $(this).attr('href');
+    $("#Username").val("").empty();
+    $("#Password").val("").empty();
+        $("#SignInTable").show();
+    
+    $("#messageSuccess").hide();
+    $("#messageFail").hide();
+    $("#signOutMessage").hide();
+    //Fade in the Popup
+    $(SignInBox).fadeIn(300);
+    
+    //Set the center alignment padding + border see css style
+    var popMargTop = ($(SignInBox).height() + 24) / 2; 
+    var popMargLeft = ($(SignInBox).width() + 24) / 2; 
+    
+    $(SignInBox).css({ 
+      'margin-top' : -popMargTop,
+      'margin-left' : -popMargLeft
+    });
+    
+    // Add the mask to body
+    $('body').append('<div id="mask"></div>');
+    $('#mask').fadeIn(300);
+    
+    return false;
+  });
+
+  
+  // When clicking on the button close or the mask layer the popup closed
+  
+  $('a.close, #mask').live('click', function() { 
+    $('#mask , .login-popup').fadeOut(300 , function() {
+    $('#mask').remove();  
+  }); 
+  return false;
+  });
+
+
+   
+  
+     $(function(){
+      $("#SignUp").click(function(){
+      $.post('../SignUp',{Username: usernameSignUp, PasswordFirst: passwordSignUpFirst,
+        PasswordSecond: passwordSignUpSecond}, function(results){
+        if(results=='duplicate'){
+          $("#SignUpTable").hide();
+          $("#duplicate").show();
+          
+        }else if(results=='NotMatched'){
+          $("#SignUpTable").hide();
+          $("#notmatched").show();
+        }else{
+          $("#SignUpTable").hide();
+          $("#messageSuccessSignUp").html("Welcome Onboard "+usernameSignUp);
+          $("#messageSuccessSignUp").show();
+          
+          document.getElementById("UserAccount").innerHTML="<i class='icon-user icon-white'></i>Welcome "+usernameSignUp + "<b class='caret'></b>";
+          $("#logOutLink").show();
+          $("#accountInfo").show();
+          $("#SignInButton").hide();
+        }
+        //draw the graph
+          
+        },'json');
+     });
+    });
+
+        $("#logOutLink").click(function(){
+          var SignInBox = $(this).attr('href');
+          $(SignInBox).fadeIn(300);
+          
+          //Set the center alignment padding + border see css style
+          var popMargTop = ($(SignInBox).height() + 24) / 2; 
+          var popMargLeft = ($(SignInBox).width() + 24) / 2; 
+          
+          $(SignInBox).css({ 
+            'margin-top' : -popMargTop,
+            'margin-left' : -popMargLeft
+          });
+          
+          // Add the mask to body
+          $('body').append('<div id="mask"></div>');
+          $('#mask').fadeIn(300);
+          $("#messageSuccess").hide();
+          $("#messageFail").hide();
+          $("#errorPassword").hide();
+          $("#errorUsername").hide();
+          
+          $.getJSON('../LogOut', {},function(results){
+          
+          $("#SignInTable").hide();
+          document.getElementById("signOutMessage").innerHTML=results;
+          $("#signOutMessage").show();
+          if(results=="Log out succeed"){
+            $("#SignInButton").show();  
+            $("#logOutLink").hide();
+            $("#accountInfo").hide();
+            document.getElementById("UserAccount").innerHTML="<i class='icon-user icon-white'></i>User<b class='caret'></b>";
+          }
+          });
+       });
+
+  
+    $(function() {
+      $("#usernameSignUp").change(function() {
+        usernameSignUp = $(this).val();
+      });
+    });
+  
+
+  
+    $(function() {
+      $("#passwordSignUpFirst").change(function() {
+        passwordSignUpFirst = generate($(this).val(),'olympics');
+      });
+    });
+
+
+  
+    $(function() {
+      $("#passwordSignUpSecond").change(function() {
+        passwordSignUpSecond = generate($(this).val(),'olympics');
+      });
+    });
+
+ })(jQuery);
+
+
+</script>
 <!-- thumbnailScroller script -->
+<link rel="stylesheet" type="text/css" href="../Athlete/SignIn.css">
 <script src="../jquery.thumbnailScroller.js"></script>
+<script src="../sha1.js" ></script> 
 <script src="../libraries/RGraph.common.core.js" ></script>
 <script src="../libraries/RGraph.common.dynamic.js" ></script>
 <script src="../libraries/RGraph.common.tooltips.js" ></script>

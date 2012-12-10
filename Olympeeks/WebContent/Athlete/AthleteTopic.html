@@ -42,18 +42,18 @@ header h1 .big{font-size: 34px; color:#d56916;}
           <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li><a href="#">Home</a></li>
+              <li><a href="../Olympeeks.html">Home</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Topics <b class="caret"></b></a>
+                <a href="../Olympeeks.html" class="dropdown-toggle" data-toggle="dropdown">Topics <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="../Country/CountryTopic.html">Country</a></li>
-                  <li><a href="#">Athelete</a></li>
-                  <li><a href="#">Sport</a></li>
-                  <li><a href="#">Female</a></li>
+                  <li><a href="#">Athlete</a></li>
+                  <li><a href="../Sport/SportTopic.html">Sport</a></li>
+                  <li><a href="../Female/FemaleTopic.html">Female</a></li>
                 </ul>
               </li>
               <li class="dropdown">
-              	<a href="#" class="dropdown-toggle" data-toggle="dropdown">More View!</a>
+              	<a href="#" class="dropdown-toggle" data-toggle="dropdown">More View!<b class="caret"></b></a>
               	<ul class="dropdown-menu" >
               	<li><a href="javascript:activateTab('page1')" id='View1' name='View1'>Individual</a></li>
 				<li><a href="javascript:activateTab('page2')" id='View2' name='View2'>Super Stars</a></li>
@@ -61,7 +61,7 @@ header h1 .big{font-size: 34px; color:#d56916;}
               	</li>
               <li><a href="#About">About</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id='UserAccount' name='UserAccount'><i class="icon-user icon-white"></i>User<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id='UserAccount' name='UserAccount'><i class="icon-user icon-white"></i><b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="#signIn-box" id='SignInButton' name='SignInButton'><i class="icon-arrow-right"></i>Login</a></li>
                   <li><a href="#" style='display:none' id = 'accountInfo' name='accountInfo'><i class="icon-arrow-left"></i>Account</a></li>
@@ -86,28 +86,29 @@ header h1 .big{font-size: 34px; color:#d56916;}
           <div class="container">
             <div class="carousel-caption">
               <h1>Follow your favorite athlete</h1>
-              <p class="lead">In a history of over a one hundred years, Olympic Games have given rise to so many stars we will never forget. Muhammad Ali， Michael Phelps，Usain Bolt, Yelena Isinbayeva, you name it. Choose your favorite athlete and you can see your hero's performance in the Olympic game.</p>
+              <p class="lead">In a history of over a one hundred years, Olympic Games have given rise to so many stars we will never forget. Muhammad Ali， Michael Phelps，Usain Bolt, Yelena Isinbayeva, you name it. Choose your favorite athlete and you can see your hero's performance in the Olympic game</p>
               <a class="btn btn-large btn-primary" href="#signUp-box" id="SignUpButton" name="SignUpButton">Sign up today</a>
             </div>
           </div>
         </div>
-        <div class="item">
-          <img src="liuxiang.png" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Liu Xiang, the cultural icon of China.</h1>
-              <p class="lead"> Winning the 2004 Olympic game 110m hurdle made Liu Xiang the first Chinese athlete to achieve a Olympic Champion in men's track and field. Although he wasn't able to win the crown again in 2008 and 2012, he's still a very popular superstar in China </p>
-              <a class="btn btn-large btn-primary" href="#">Learn more</a>
-            </div>
-          </div>
-        </div>
+       
         <div class="item">
           <img src="swimming.png" alt="">
           <div class="container">
             <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
+              <h1>Want to know more about the Super Stars in Olympic history?</h1>
+              <p class="lead">In 2008 Beijing Olympic, Phelps single handedly won 8 gold medals for US team. Are you wondering how many gold medals can an individual super star win in Olympic history?! Check out our Super Star View!</p>
+              <a class="btn btn-large btn-primary" href="javascript:activateTab('page2')" id='swimming'>Learn More about Super Stars in Swimming</a>
+            </div>
+          </div>
+        </div>
+         <div class="item">
+          <img src="liuxiang.png" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Liu Xiang, the cultural icon of China</h1>
+              <p class="lead"> Winning the 2004 Olympic game 110m hurdle made Liu Xiang the first Chinese athlete to achieve a Olympic Champion in men's track and field. Although he wasn't able to win the crown again in 2008 and 2012, he's still a very popular superstar in China </p>
+              <a class="btn btn-large btn-primary" id='activateView2' href="javascript:activateTab('page2')">Check Out the Super Star View!</a>
             </div>
           </div>
         </div>
@@ -177,7 +178,7 @@ header h1 .big{font-size: 34px; color:#d56916;}
 <div class="span9">
 
 <div class = "GraphContainer" id='Container'>
-	<canvas id="cvs" width="800" height="400">[No canvas support]</canvas>
+	<canvas id="cvs" width="800" height="500">[No canvas support]</canvas>
 </div>
 
 </div>
@@ -224,7 +225,7 @@ header h1 .big{font-size: 34px; color:#d56916;}
 <div class="span9">
 
 <div class = "GraphContainer" id='ContainerView'>
-	<canvas id="cvsView" width="800" height="400">[No canvas support]</canvas>
+	<canvas id="cvsView" width="800" height="500">[No canvas support]</canvas>
 
 </div>
 
@@ -244,26 +245,24 @@ header h1 .big{font-size: 34px; color:#d56916;}
 <div id="tS2" class="jThumbnailScroller" style="margin-top:100px;">
 	<div class="jTscrollerContainer">
 		<div class="jTscroller">
-			<a class="recommend"><img src="thumbs/img1.jpg" /></a>
-			<a class="recommend"><img src="thumbs/img2.jpg" /></a>
-			<a><img src="thumbs/img3.jpg" /></a>
-			<a><img src="thumbs/img4.jpg" /></a>
-			<a><img src="thumbs/img5.jpg" /></a>
-			<a><img src="thumbs/img6.jpg" /></a>
-			<a><img src="thumbs/img7.jpg" /></a>
-			<a><img src="thumbs/img8.jpg" /></a>
-			<a><img src="thumbs/img9.jpg" /></a>
-			<a><img src="thumbs/img10.jpg" /></a>
-			<a><img src="thumbs/img11.jpg" /></a>
-			<a><img src="thumbs/img12.jpg" /></a>
-			<a><img src="thumbs/img13.jpg" /></a>
-			<a><img src="thumbs/img14.jpg" /></a>
-			<a><img src="thumbs/img15.jpg" /></a>
-			<a><img src="thumbs/img16.jpg" /></a>
-			<a><img src="thumbs/img17.jpg" /></a>
-			<a><img src="thumbs/img18.jpg" /></a>
-			<a><img src="thumbs/img19.jpg" /></a>
-			<a><img src="thumbs/img20.jpg" /></a>
+			<a><img src="thumbs/phelps.jpg" /></a>
+			<a class="recommend"><img src="thumbs/2.jpg" /></a>
+			<a><img src="thumbs/3.jpg" /></a>
+			<a><img src="thumbs/4.jpg" /></a>
+			<a><img src="thumbs/Federica-Pellegrini.jpg" /></a>
+			<a><img src="thumbs/6.jpg" /></a>
+			<a><img src="thumbs/7.jpg" /></a>
+			<a><img src="thumbs/8.jpg" /></a>
+			<a><img src="thumbs/9.jpg" /></a>
+			<a><img src="thumbs/10.jpg" /></a>
+			<a><img src="thumbs/11.jpg" /></a>
+			<a><img src="thumbs/12.jpg" /></a>
+			<a><img src="thumbs/13.jpg" /></a>
+			<a><img src="thumbs/14.jpg" /></a>
+			<a><img src="thumbs/15.jpg" /></a>
+			<a><img src="thumbs/16.jpg" /></a>
+			<a><img src="thumbs/17.jpg" /></a>
+			<a><img src="thumbs/18.jpg" /></a>
 		</div>
 	</div>
 	<a href="#" class="jTscrollerPrevButton"></a>
@@ -345,7 +344,18 @@ jQuery.noConflict();
 
 //select the country
  window.onload=function(){
-
+	 $.getJSON('../SignInOnLoad',function(results){
+			// $('>option', country).remove();
+			 if(results!='out'){
+					document.getElementById("UserAccount").innerHTML="<i class='icon-user icon-white'></i>Welcome "+results + "<b class='caret'></b>";
+					$("#logOutLink").show();
+					$("#accountInfo").show();
+					$("#SignInButton").hide();
+				}else{
+					document.getElementById("UserAccount").innerHTML="<i class='icon-user icon-white'></i>User<b class='caret'></b>";
+				}; 
+			 })
+	 
  	$("#tS2").thumbnailScroller({ 
 		scrollerType:"hoverPrecise", 
 		scrollerOrientation:"horizontal", 
@@ -371,15 +381,6 @@ jQuery.noConflict();
 			 country.append($('<option/>').text("Please select the country"));
 		 }
 	 })
- $.getJSON('../SignInOnLoad',function(results){
-		// $('>option', country).remove();
-		 if(results=='in'){
-				document.getElementById("UserAccount").innerHTML='Welcome '+username;
-				$("#logOutLink").show();
-				$("#accountInfo").show();
-				$("#SignInButton").hide();
-			}; 
-		 })
  
  
  }
@@ -506,6 +507,8 @@ jQuery.noConflict();
 				});
 		});
 	});
+ 
+ 
  })(jQuery);
  
  function drawGraph(results, athlete, event){
@@ -587,6 +590,41 @@ function wrapText(context, text, x, y, maxWidth, lineHeight) {
 (function($){
 	$(function(){
 		$("#View2").click(function(){
+			$('#ContainerView').empty();
+			$.getJSON('../AthleteSvtView',{sportsCategory: false},function(results){
+				 var SportsCategory = $("#SportsCategory2");
+				// $('>option', country).remove();
+				 if(results){
+					 $.each(results, function(i,result){
+							SportsCategory.append($('<option/>').val(result).text(result));
+					}); 
+				 }else{
+					 SportsCategory.append($('<option/>').text("Please select the sports category"));
+				 }
+			 });
+				 });
+			 });
+	
+	$(function(){
+		$("#activateView2").click(function(){
+			$('#ContainerView').empty();
+			$.getJSON('../AthleteSvtView',{sportsCategory: false},function(results){
+				 var SportsCategory = $("#SportsCategory2");
+				// $('>option', country).remove();
+				 if(results){
+					 $.each(results, function(i,result){
+							SportsCategory.append($('<option/>').val(result).text(result));
+					}); 
+				 }else{
+					 SportsCategory.append($('<option/>').text("Please select the sports category"));
+				 }
+			 });
+				 });
+			 });
+	
+	$(function(){
+		$("#swimming").click(function(){
+			$('#ContainerView').empty();
 			$.getJSON('../AthleteSvtView',{sportsCategory: false},function(results){
 				 var SportsCategory = $("#SportsCategory2");
 				// $('>option', country).remove();
@@ -656,38 +694,67 @@ function wrapText(context, text, x, y, maxWidth, lineHeight) {
 				});
 		});
 	});
+	
+	$(function(){	
+	 	$("#swimming").click(function(){
+			$.getJSON('../GraphAthleteSvtView',
+					{SportsCategory: 'Swimming', startyear: '1990', endyear: '2012'},function(results){
+				
+					//draw the graph
+					drawGraphView(results);
+				});
+		});
+	});
+	
 
 })(jQuery);
 
 function drawGraphView(results){
  	//refresh the div, to refresh the canvas
 	$('#ContainerView').empty();
-	$('#ContainerView').append('<canvas id="cvsView" width="900" height="400">[No canvas support]</canvas>');
+	/* $('#ContainerView').append('<canvas id="cvsView" width="900" height="400">[No canvas support]</canvas>'); */
   	if(results){ 		
 	//get the graph
-	var graph = getGraphView('cvsView', results);
-	//draw the graph
-	graph.Draw();
-	}
+  		var myData = new Array([results.athletes[0], results.golds[0]], [results.athletes[1], results.golds[1]], 
+  				[results.athletes[2], results.golds[2]], [results.athletes[3], results.golds[3]], 
+  				[results.athletes[4], results.golds[4]], [results.athletes[5], results.golds[5]], 
+  				[results.athletes[6], results.golds[6]], [results.athletes[7], results.golds[7]]);
+  		var colors = ['#D20202', '#A70000', '#850000', '#740000', '#530000', '#850000', '#B00000', '#9C0404'];
+  		var myChart = new JSChart('ContainerView', 'bar');
+  		myChart.setDataArray(myData);
+  		myChart.colorizeBars(colors);
+  		myChart.setDataArray(myData);
+  		myChart.setAxisColor('#9D9F9D');
+  		myChart.setAxisWidth(1);
+  		myChart.setAxisNameX('Super Stars');
+  		myChart.setAxisNameY('Gold Medals');
+  		myChart.setAxisNameColor('#655D5D');
+  		myChart.setAxisNameFontSize(16	);
+  		myChart.setAxisPaddingLeft(50);
+  		myChart.setAxisValuesDecimals(1);
+  		myChart.setAxisValuesColor('#9C1919');
+  		myChart.setTextPaddingLeft(0);
+  		myChart.setBarValuesColor('#9C1919');
+  		myChart.setBarBorderWidth(0);
+  		myChart.setTitleColor('#8C8382');
+  		myChart.setGridColor('#5D5F5D');
+  		myChart.setSize(900, 600);
+  		myChart.setAxisValuesAngle(45);
+  		myChart.setAxisPaddingBottom(200);
+  		myChart.draw();
+        }
 }
 
-function getGraphView(id, results){
+
+/* function getGraphView(id, results){
  	var graphObject = results;
-	if(!bar4){	     	
-		   var bar4 = new RGraph.Bar(id, graphObject.golds);
-            bar4.Set('colors', ['#2A17B1', '#98ED00']); 
-            bar4.Set('labels', graphObject.athlete);
-            bar4.Set('numyticks', 5);
-            bar4.Set('ylabels.count', 5);
-            bar4.Set('gutter.left', 35);
-            bar4.Set('variant', '3d');
-            bar4.Set('strokestyle', 'transparent');
-            bar4.Set('hmargin.grouped', 0);
-            bar4.Set('scale.round', true);
-   
+ 	if(!bar){	     	
+		   var bar = new RGraph.Bar(id, graphObject.golds); 
+            bar.Set('labels', ['1','2','3','4','5','6','7','8']);
 	}
-	return bar4;
-}
+	return bar;
+	    } */
+
 </script>
 <script>
 	
@@ -703,14 +770,14 @@ function getGraphView(id, results){
 	
 	
 	 $('#SignIn').click(function(){
-		$.getJSON('../ValidateLogin',{Username: username, Password: password}, function(results){
+		$.post('../ValidateLogin',{Username: username, Password: password}, function(results){
 				if(results=='Success'){
 					$("#SignInTable").hide();
 					$("#messageSuccess").html("Welcome back "+username);
 					$("#messageSuccess").show();
 					$("#messageFail").hide();
 					var a = $("#UserAccount");
-					document.getElementById("UserAccount").innerHTML='Welcome '+username;
+					document.getElementById("UserAccount").innerHTML="<i class='icon-user icon-white'></i>Welcome "+username + "<b class='caret'></b>";
 					$("#logOutLink").show();
 					$("#accountInfo").show();
 					$("#SignInButton").hide();
@@ -722,7 +789,7 @@ function getGraphView(id, results){
 				}
 				//draw the graph
 					
-				});
+				},'json');
 		});
 
 
@@ -822,7 +889,7 @@ function getGraphView(id, results){
 	
 		 $(function(){
 			$("#SignUp").click(function(){
-			$.getJSON('../SignUp',{Username: usernameSignUp, PasswordFirst: passwordSignUpFirst,
+			$.post('../SignUp',{Username: usernameSignUp, PasswordFirst: passwordSignUpFirst,
 				PasswordSecond: passwordSignUpSecond}, function(results){
 				if(results=='duplicate'){
 					$("#SignUpTable").hide();
@@ -836,14 +903,14 @@ function getGraphView(id, results){
 					$("#messageSuccessSignUp").html("Welcome Onboard "+usernameSignUp);
 					$("#messageSuccessSignUp").show();
 					
-					document.getElementById("UserAccount").innerHTML='Welcome '+usernameSignUp;
+					document.getElementById("UserAccount").innerHTML="<i class='icon-user icon-white'></i>Welcome "+usernameSignUp + "<b class='caret'></b>";
 					$("#logOutLink").show();
 					$("#accountInfo").show();
 					$("#SignInButton").hide();
 				}
 				//draw the graph
 					
-				});
+				},'json');
 		 });
 	 	});
 
@@ -877,7 +944,7 @@ function getGraphView(id, results){
 						$("#SignInButton").show();	
 						$("#logOutLink").hide();
 						$("#accountInfo").hide();
-						document.getElementById("UserAccount").innerHTML='User';
+						document.getElementById("UserAccount").innerHTML="<i class='icon-user icon-white'></i>User<b class='caret'></b>";
 					}
 					});
 			 });
@@ -933,8 +1000,10 @@ function getGraphView(id, results){
 <script src="../libraries/RGraph.common.tooltips.js" ></script>
 <script src="../libraries/RGraph.common.effects.js" ></script>
 <script src="../libraries/RGraph.line.js" ></script>
-<script type="text/javascript" src="../libraries/RGraph.bar.js" ></script>
+<script src="../libraries/RGraph.bar.js" ></script>
+<script src="../libraries/RGraph.hbar.js" ></script>
 <script src="../libraries/jquery.min.js" ></script> 
+<script src="../libraries/jscharts.js" ></script> 
 <script src="../libraries/RGraph.common.key.js" ></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="../js/bootstrap.min.js"></script>

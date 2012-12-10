@@ -40,7 +40,7 @@ public class SignInOnLoad extends HttpServlet {
 	       
 	        }else{
 	        	Gson gson = new Gson();
-				String json = gson.toJson("in");
+				String json = gson.toJson(session.getAttribute("username"));
 				
 				response.setContentType("text/plain");
 				response.setCharacterEncoding("UTF-8");
