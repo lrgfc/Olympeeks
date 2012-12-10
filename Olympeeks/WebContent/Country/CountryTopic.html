@@ -34,7 +34,7 @@ header h1 .big{font-size: 34px; color:#d56916;}
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Olympeeks</a>
+          <a class="brand" href="../Olympeeks.html">Olympeeks</a>
           <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
           <div class="nav-collapse collapse">
             <ul class="nav">
@@ -87,7 +87,7 @@ header h1 .big{font-size: 34px; color:#d56916;}
             <div class="carousel-caption">
               <h1>The rise of China</h1>
               <p class="lead">2008, China ranks the first in the Olympic Game. Whether they could continue their amazing performance? Look at the trends, predict it as you like!</p>
-              <a class="btn btn-large btn-primary" href="#">Learn more</a>
+              <a class="btn btn-large btn-primary">Learn more</a>
             </div>
           </div>
         </div>
@@ -97,7 +97,7 @@ header h1 .big{font-size: 34px; color:#d56916;}
             <div class="carousel-caption">
               <h1>America Emperor</h1>
               <p class="lead">United States, Rule the Olympic Stages for decades. Whether they could continue these trends? Again, Look at the data, predict it as you like!</p>
-              <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
+              <a class="btn btn-large btn-primary">Learn more</a>
             </div>
           </div>
         </div>
@@ -169,11 +169,11 @@ header h1 .big{font-size: 34px; color:#d56916;}
 			<a><img class="rank" id="rank3" src="thumbs/img3.jpg" alt="NA" /></a>
 			<a><img class="rank" id="rank4" src="thumbs/img4.jpg" alt="NA"/></a>
 			<a><img class="rank" id="rank5" src="thumbs/img5.jpg" alt="NA"/></a>
-			<a><img class="rank" src="thumbs/img6.jpg" alt="NA" /></a>
-			<a><img class="rank" src="thumbs/img7.jpg" alt="NA"/></a>
-			<a><img class="rank" src="thumbs/img8.jpg" alt="NA"/></a>
-			<a><img class="rank" src="thumbs/img9.jpg" alt="NA"/></a>
-			<a><img class="rank" src="thumbs/img10.jpg" alt="NA"/></a>
+			<a><img class="rank" id="rank6" src="thumbs/img6.jpg" alt="NA" /></a>
+			<a><img class="rank" id="rank7" src="thumbs/img7.jpg" alt="NA"/></a>
+			<a><img class="rank" id="rank8" src="thumbs/img8.jpg" alt="NA"/></a>
+			<a><img class="rank" id="rank9" src="thumbs/img9.jpg" alt="NA"/></a>
+			<a><img class="rank" id="rank10" src="thumbs/img10.jpg" alt="NA"/></a>
 		<!--	<a><img src="thumbs/img11.jpg" /></a>
 			<a><img src="thumbs/img12.jpg" /></a>
 			<a><img src="thumbs/img13.jpg" /></a>
@@ -254,6 +254,7 @@ var selectedCountry;
 var selStartYear;
 var selEndYear;
 var graphs;
+var isLogin = false;
 
 window.onload=function(){ 
 	
@@ -300,6 +301,7 @@ window.onload=function(){
 
 	 		}else{
 	 			//alert(results);
+	 			isLogin = true;
 	 			var rmdCountry =  new Array();
 	 			$.each(results, function(i,result){
 	 				rmdCountry[i] = result;
@@ -388,29 +390,33 @@ $("#trendButton").click(function(){
 });
 // recommendation System
 $("#rank1").click(function(){
-    	var temp = $("#rank1").attr('src');
-    	len = temp.length;
-    	temp = temp.substr(7,len-11);
-    	alert(temp);
+    	if(isLogin == true){
+    		var temp = $("#rank1").attr('src');
+    		len = temp.length;
+    		temp = temp.substr(7,len-11);
+    		alert(temp);
 
-    	var temptime = $.now()
-		$.getJSON('../GraphSvt',
-			{country:temp,
-			startyear: '1896',
-			endyear: '2012',
-			clicktime: temptime},function(results){
+    		var temptime = $.now()
+			$.getJSON('../GraphSvt',
+				{country:temp,
+				startyear: '1896',
+				endyear: '2012',
+				clicktime: temptime},function(results){
 				
 			//draw the graph
-			$('.GraphContainer').empty();
-			$('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
+				$('.GraphContainer').empty();
+				$('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
 			//get the graph
-			var graph = getGraph('cvs', results);
-			RGraph.Effects.Line.jQuery.Trace(graph);
-		});
+				var graph = getGraph('cvs', results);
+				RGraph.Effects.Line.jQuery.Trace(graph);
+			});
+    	}
+    	
 		//$(".recommend").
   	});
 $("#rank2").click(function(){
-    	var temp = $("#rank2").attr('src');
+	if(isLogin == true){
+		var temp = $("#rank2").attr('src');
     	len = temp.length;
     	temp = temp.substr(7,len-11);
     	alert(temp);
@@ -429,10 +435,13 @@ $("#rank2").click(function(){
 			var graph = getGraph('cvs', results);
 			RGraph.Effects.Line.jQuery.Trace(graph);
 		});
+	}
+    	
 		//$(".recommend").
   	});
 $("#rank3").click(function(){
-    	var temp = $("#rank3").attr('src');
+	if(isLogin == true){
+		var temp = $("#rank3").attr('src');
     	len = temp.length;
     	temp = temp.substr(7,len-11);
     	alert(temp);
@@ -451,10 +460,12 @@ $("#rank3").click(function(){
 			var graph = getGraph('cvs', results);
 			RGraph.Effects.Line.jQuery.Trace(graph);
 		});
-		//$(".recommend").
-  	});
+	}
+    		//$(".recommend").
+  });
 $("#rank4").click(function(){
-    	var temp = $("#rank4").attr('src');
+	if(isLogin == true){
+		var temp = $("#rank4").attr('src');
     	len = temp.length;
     	temp = temp.substr(7,len-11);
     	alert(temp);
@@ -473,10 +484,39 @@ $("#rank4").click(function(){
 			var graph = getGraph('cvs', results);
 			RGraph.Effects.Line.jQuery.Trace(graph);
 		});
+	}
+    	
+		//$(".recommend").
+	});
+$("#rank5").click(function(){
+	if(isLogin == true){
+		var temp = $("#rank5").attr('src');
+    	len = temp.length;
+    	temp = temp.substr(7,len-11);
+    	alert(temp);
+
+    	var temptime = $.now()
+		$.getJSON('../GraphSvt',
+			{country:temp,
+			startyear: '1896',
+			endyear: '2012',
+			clicktime: temptime},function(results){
+				
+			//draw the graph
+			$('.GraphContainer').empty();
+			$('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
+			//get the graph
+			var graph = getGraph('cvs', results);
+			RGraph.Effects.Line.jQuery.Trace(graph);
+		});
+	}
+    	
 		//$(".recommend").
   	});
-$("#rank5").click(function(){
-    	var temp = $("#rank5").attr('src');
+
+$("#rank6").click(function(){
+	if(isLogin == true){
+		var temp = $("#rank6").attr('src');
     	len = temp.length;
     	temp = temp.substr(7,len-11);
     	alert(temp);
@@ -495,6 +535,108 @@ $("#rank5").click(function(){
 			var graph = getGraph('cvs', results);
 			RGraph.Effects.Line.jQuery.Trace(graph);
 		});
+	}
+    	
+		//$(".recommend").
+  	});
+$("#rank7").click(function(){
+	if(isLogin == true){
+		var temp = $("#rank7").attr('src');
+    	len = temp.length;
+    	temp = temp.substr(7,len-11);
+    	alert(temp);
+
+    	var temptime = $.now()
+		$.getJSON('../GraphSvt',
+			{country:temp,
+			startyear: '1896',
+			endyear: '2012',
+			clicktime: temptime},function(results){
+				
+			//draw the graph
+			$('.GraphContainer').empty();
+			$('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
+			//get the graph
+			var graph = getGraph('cvs', results);
+			RGraph.Effects.Line.jQuery.Trace(graph);
+		});
+	}
+    	
+		//$(".recommend").
+  	});
+$("#rank8").click(function(){
+	if(isLogin == true){
+		var temp = $("#rank8").attr('src');
+    	len = temp.length;
+    	temp = temp.substr(7,len-11);
+    	alert(temp);
+
+    	var temptime = $.now()
+		$.getJSON('../GraphSvt',
+			{country:temp,
+			startyear: '1896',
+			endyear: '2012',
+			clicktime: temptime},function(results){
+				
+			//draw the graph
+			$('.GraphContainer').empty();
+			$('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
+			//get the graph
+			var graph = getGraph('cvs', results);
+			RGraph.Effects.Line.jQuery.Trace(graph);
+		});
+	}
+    	
+		//$(".recommend").
+  	});
+$("#rank9").click(function(){
+	if(isLogin == true){
+		var temp = $("#rank9").attr('src');
+    	len = temp.length;
+    	temp = temp.substr(7,len-11);
+    	alert(temp);
+
+    	var temptime = $.now()
+		$.getJSON('../GraphSvt',
+			{country:temp,
+			startyear: '1896',
+			endyear: '2012',
+			clicktime: temptime},function(results){
+				
+			//draw the graph
+			$('.GraphContainer').empty();
+			$('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
+			//get the graph
+			var graph = getGraph('cvs', results);
+			RGraph.Effects.Line.jQuery.Trace(graph);
+		});
+	}
+    	
+		//$(".recommend").
+  	});
+$("#rank10").click(function(){
+	if(isLogin == true){
+		var temp = $("#rank10").attr('src');
+    	len = temp.length;
+    	temp = temp.substr(7,len-11);
+    	alert(temp);
+
+    	var temptime = $.now()
+		$.getJSON('../GraphSvt',
+			{country:temp,
+			startyear: '1896',
+			endyear: '2012',
+			clicktime: temptime},function(results){
+				
+			//draw the graph
+			$('.GraphContainer').empty();
+			$('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
+			//get the graph
+			var graph = getGraph('cvs', results);
+			RGraph.Effects.Line.jQuery.Trace(graph);
+		});
+	}
+    	
 		//$(".recommend").
   	});
 
