@@ -87,7 +87,7 @@ header h1 .big{font-size: 34px; color:#d56916;}
             <div class="carousel-caption">
               <h1>The rise of China</h1>
               <p class="lead">2008, China ranks the first in the Olympic Game. Whether they could continue their amazing performance? Look at the trends, predict it as you like!</p>
-              <a class="btn btn-large btn-primary">Learn more</a>
+              <a class="btn btn-large btn-primary" id="learn1">Learn more</a>
             </div>
           </div>
         </div>
@@ -97,7 +97,7 @@ header h1 .big{font-size: 34px; color:#d56916;}
             <div class="carousel-caption">
               <h1>America Emperor</h1>
               <p class="lead">United States, Rule the Olympic Stages for decades. Whether they could continue these trends? Again, Look at the data, predict it as you like!</p>
-              <a class="btn btn-large btn-primary">Learn more</a>
+              <a class="btn btn-large btn-primary" id="learn2">Learn more</a>
             </div>
           </div>
         </div>
@@ -639,6 +639,40 @@ $("#rank10").click(function(){
     	
 		//$(".recommend").
   	});
+
+$("#learn1").click(function(){
+	var temptime = $.now()
+	$.getJSON('../GraphSvt',
+			{country:'China',
+			startyear: '1896',
+			endyear: '2012',
+			clicktime: temptime},function(results){
+				
+			//draw the graph
+			$('.GraphContainer').empty();
+			$('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
+			//get the graph
+			var graph = getGraph('cvs', results);
+			RGraph.Effects.Line.jQuery.Trace(graph);
+		});
+})
+
+$("#learn2").click(function(){
+	var temptime = $.now()
+	$.getJSON('../GraphSvt',
+			{country:'United States',
+			startyear: '1896',
+			endyear: '2012',
+			clicktime: temptime},function(results){
+				
+			//draw the graph
+			$('.GraphContainer').empty();
+			$('.GraphContainer').append('<canvas id="cvs" width="900" height="400">[No canvas support]</canvas>');
+			//get the graph
+			var graph = getGraph('cvs', results);
+			RGraph.Effects.Line.jQuery.Trace(graph);
+		});
+})
 
 })(jQuery);
 
